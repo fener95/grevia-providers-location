@@ -1,0 +1,3566 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_83f0ba3c87eca6a4cc2904f4d0516850 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_83f0ba3c87eca6a4cc2904f4d0516850" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_83f0ba3c87eca6a4cc2904f4d0516850 = L.map(
+                "map_83f0ba3c87eca6a4cc2904f4d0516850",
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    drawExport: false,
+                    layersControl: true,
+                }
+            );
+            L.control.scale().addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+
+            
+
+        
+    
+            var tile_layer_6184e1cef7cabd06ed1e575f17e3903f = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 24, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_6184e1cef7cabd06ed1e575f17e3903f.addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            L.control.fullscreen(
+                {"forceSeparateButton": false, "position": "topleft", "title": "Full Screen", "titleCancel": "Exit Full Screen"}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var options = {
+              position: "topleft",
+              draw: {},
+              edit: {},
+            }
+                // FeatureGroup is to store editable layers.
+                var drawnItems_draw_control_3518ef0778bcbda6e2f136038687fffe =
+                    new L.featureGroup().addTo(
+                        map_83f0ba3c87eca6a4cc2904f4d0516850
+                    );
+
+            options.edit.featureGroup = drawnItems_draw_control_3518ef0778bcbda6e2f136038687fffe;
+            var draw_control_3518ef0778bcbda6e2f136038687fffe = new L.Control.Draw(
+                options
+            ).addTo( map_83f0ba3c87eca6a4cc2904f4d0516850 );
+            map_83f0ba3c87eca6a4cc2904f4d0516850.on(L.Draw.Event.CREATED, function(e) {
+                var layer = e.layer,
+                    type = e.layerType;
+                var coords = JSON.stringify(layer.toGeoJSON());
+                layer.on('click', function() {
+                    alert(coords);
+                    console.log(coords);
+                });
+                drawnItems_draw_control_3518ef0778bcbda6e2f136038687fffe.addLayer(layer);
+            });
+            map_83f0ba3c87eca6a4cc2904f4d0516850.on('draw:created', function(e) {
+                drawnItems_draw_control_3518ef0778bcbda6e2f136038687fffe.addLayer(e.layer);
+            });
+
+            
+        
+    
+            var measure_control_f5ca45508ff00628645ee5aeb106d5e2 = new L.Control.Measure(
+                {"position": "bottomleft", "primaryAreaUnit": "sqmeters", "primaryLengthUnit": "meters", "secondaryAreaUnit": "acres", "secondaryLengthUnit": "miles"});
+            map_83f0ba3c87eca6a4cc2904f4d0516850.addControl(measure_control_f5ca45508ff00628645ee5aeb106d5e2);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+
+            var geocoderOpts_geocoder_2ee9012ca0b70453e655cdbb4c720b8a = {"collapsed": true, "defaultMarkGeocode": true, "position": "topleft", "provider": "nominatim", "providerOptions": {}, "zoom": 11};
+
+            // note: geocoder name should start with lowercase
+            var geocoderName_geocoder_2ee9012ca0b70453e655cdbb4c720b8a = geocoderOpts_geocoder_2ee9012ca0b70453e655cdbb4c720b8a["provider"];
+
+            var customGeocoder_geocoder_2ee9012ca0b70453e655cdbb4c720b8a = L.Control.Geocoder[ geocoderName_geocoder_2ee9012ca0b70453e655cdbb4c720b8a ](
+                geocoderOpts_geocoder_2ee9012ca0b70453e655cdbb4c720b8a['providerOptions']
+            );
+            geocoderOpts_geocoder_2ee9012ca0b70453e655cdbb4c720b8a["geocoder"] = customGeocoder_geocoder_2ee9012ca0b70453e655cdbb4c720b8a;
+
+            L.Control.geocoder(
+                geocoderOpts_geocoder_2ee9012ca0b70453e655cdbb4c720b8a
+            ).on('markgeocode', function(e) {
+                var zoom = geocoderOpts_geocoder_2ee9012ca0b70453e655cdbb4c720b8a['zoom'] || map_83f0ba3c87eca6a4cc2904f4d0516850.getZoom();
+                map_83f0ba3c87eca6a4cc2904f4d0516850.setView(e.geocode.center, zoom);
+            }).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+
+        
+    
+            map_83f0ba3c87eca6a4cc2904f4d0516850.fitBounds(
+                [[20, 0], [20, 0]],
+                {"maxZoom": 2}
+            );
+        
+    
+            var marker_308208246797d4499879350dbd196397 = L.marker(
+                [43.08641, 12.36776],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_8d4ac76469cf65be6a904dc1dd3933c0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_308208246797d4499879350dbd196397.setIcon(icon_8d4ac76469cf65be6a904dc1dd3933c0);
+        
+    
+        var popup_b2dca92a9f1e240a5d45aed2da39ace5 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_1684f28d3151f930b8af4520c70f007b = $(`<div id="html_1684f28d3151f930b8af4520c70f007b" style="width: 100.0%; height: 100.0%;">     <b>Agricolus S.r.l.</b><br>     <a href="http://www.agricolus.com" target="_blank">http://www.agricolus.com</a><br>     Latitude: 43.08641<br>     Longitude: 12.36776     </div>`)[0];
+                popup_b2dca92a9f1e240a5d45aed2da39ace5.setContent(html_1684f28d3151f930b8af4520c70f007b);
+            
+        
+
+        marker_308208246797d4499879350dbd196397.bindPopup(popup_b2dca92a9f1e240a5d45aed2da39ace5)
+        ;
+
+        
+    
+    
+            var marker_22e8911c04eb371006065f63fdbe081b = L.marker(
+                [41.1494512, -8.6107884],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_da4c69039dbed843bfe2d0c3bc8296bf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_22e8911c04eb371006065f63fdbe081b.setIcon(icon_da4c69039dbed843bfe2d0c3bc8296bf);
+        
+    
+        var popup_8de0c6e6933cf6952f0bf4c3c205a931 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_855616b784e499fec60cd6f3d17ac100 = $(`<div id="html_855616b784e499fec60cd6f3d17ac100" style="width: 100.0%; height: 100.0%;">     <b>AgroGrIN Tech</b><br>     <a href="https://www.agrogrintech.com" target="_blank">https://www.agrogrintech.com</a><br>     Latitude: 41.1494512<br>     Longitude: -8.6107884     </div>`)[0];
+                popup_8de0c6e6933cf6952f0bf4c3c205a931.setContent(html_855616b784e499fec60cd6f3d17ac100);
+            
+        
+
+        marker_22e8911c04eb371006065f63fdbe081b.bindPopup(popup_8de0c6e6933cf6952f0bf4c3c205a931)
+        ;
+
+        
+    
+    
+            var marker_7116b2c754aee1ebdbb1ab7f18a45842 = L.marker(
+                [33.21171375033512, 35.57878302165583],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_6785eda73bcf5e0044c77e4fcec1e37d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7116b2c754aee1ebdbb1ab7f18a45842.setIcon(icon_6785eda73bcf5e0044c77e4fcec1e37d);
+        
+    
+        var popup_c3110e629dc92240259e89c73981b8fc = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_bf6e6f47c12c6dfa93812c7ea8f359ad = $(`<div id="html_bf6e6f47c12c6dfa93812c7ea8f359ad" style="width: 100.0%; height: 100.0%;">     <b>Blue Tree Technologies Ltd.</b><br>     <a href="https://www.bluetree-tech.com/" target="_blank">https://www.bluetree-tech.com/</a><br>     Latitude: 33.21171375033512<br>     Longitude: 35.57878302165583     </div>`)[0];
+                popup_c3110e629dc92240259e89c73981b8fc.setContent(html_bf6e6f47c12c6dfa93812c7ea8f359ad);
+            
+        
+
+        marker_7116b2c754aee1ebdbb1ab7f18a45842.bindPopup(popup_c3110e629dc92240259e89c73981b8fc)
+        ;
+
+        
+    
+    
+            var marker_0071d45cf2937f732fbda9228aeafff0 = L.marker(
+                [41.3828939, 2.1774322],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_fb719fd60a3ac17dd22d57b6e65551b4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_0071d45cf2937f732fbda9228aeafff0.setIcon(icon_fb719fd60a3ac17dd22d57b6e65551b4);
+        
+    
+        var popup_b6ef097b7008016bb3cb533dc58ebbe7 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_1628f0a7ede02b9cb8d9b81686f31a34 = $(`<div id="html_1628f0a7ede02b9cb8d9b81686f31a34" style="width: 100.0%; height: 100.0%;">     <b>Bio2Coat Natural Preservation Technology</b><br>     <a href="http://bio2coat.com/" target="_blank">http://bio2coat.com/</a><br>     Latitude: 41.3828939<br>     Longitude: 2.1774322     </div>`)[0];
+                popup_b6ef097b7008016bb3cb533dc58ebbe7.setContent(html_1628f0a7ede02b9cb8d9b81686f31a34);
+            
+        
+
+        marker_0071d45cf2937f732fbda9228aeafff0.bindPopup(popup_b6ef097b7008016bb3cb533dc58ebbe7)
+        ;
+
+        
+    
+    
+            var marker_b8f1b114bc2ec9af730b4dfcd0bbd759 = L.marker(
+                [43.2624298, -2.9485055],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_411112372ca8641b4874ba13deaea896 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b8f1b114bc2ec9af730b4dfcd0bbd759.setIcon(icon_411112372ca8641b4874ba13deaea896);
+        
+    
+        var popup_c4269b452a9bf089a5a3772fcc608fc0 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_65e6bc28cbeb8aae6715ee362786bcc5 = $(`<div id="html_65e6bc28cbeb8aae6715ee362786bcc5" style="width: 100.0%; height: 100.0%;">     <b>AOTECH, Advanced Optical Technologies, S.L.</b><br>     <a href="http://www.aotech.es" target="_blank">http://www.aotech.es</a><br>     Latitude: 43.2624298<br>     Longitude: -2.9485055     </div>`)[0];
+                popup_c4269b452a9bf089a5a3772fcc608fc0.setContent(html_65e6bc28cbeb8aae6715ee362786bcc5);
+            
+        
+
+        marker_b8f1b114bc2ec9af730b4dfcd0bbd759.bindPopup(popup_c4269b452a9bf089a5a3772fcc608fc0)
+        ;
+
+        
+    
+    
+            var marker_1df2f4c6481a444c3fbf6e4361d95511 = L.marker(
+                [45.9921471, 12.6351026],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_dfa725a78cae449ca3caeffbeba43b68 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_1df2f4c6481a444c3fbf6e4361d95511.setIcon(icon_dfa725a78cae449ca3caeffbeba43b68);
+        
+    
+        var popup_37b51ae4de01858a6c2e676bf60cc883 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_c81575315b79765f766c24a0730528bd = $(`<div id="html_c81575315b79765f766c24a0730528bd" style="width: 100.0%; height: 100.0%;">     <b>Circular Fiber SRL</b><br>     <a href="https://circularfiber.it" target="_blank">https://circularfiber.it</a><br>     Latitude: 45.9921471<br>     Longitude: 12.6351026     </div>`)[0];
+                popup_37b51ae4de01858a6c2e676bf60cc883.setContent(html_c81575315b79765f766c24a0730528bd);
+            
+        
+
+        marker_1df2f4c6481a444c3fbf6e4361d95511.bindPopup(popup_37b51ae4de01858a6c2e676bf60cc883)
+        ;
+
+        
+    
+    
+            var marker_7bedcdeeb8ca880a65d7c239df1c571f = L.marker(
+                [35.6812546, 139.766706],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_77aaa02d08b3ad09db2a83aed621a40a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7bedcdeeb8ca880a65d7c239df1c571f.setIcon(icon_77aaa02d08b3ad09db2a83aed621a40a);
+        
+    
+        var popup_36f9368d66fd66f1bcd2c31e0463ec50 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_003a2a0e580fcc74ff6125afa5e76b27 = $(`<div id="html_003a2a0e580fcc74ff6125afa5e76b27" style="width: 100.0%; height: 100.0%;">     <b>Circular Powder</b><br>     <a href="https://circularpowder.com/" target="_blank">https://circularpowder.com/</a><br>     Latitude: 35.6812546<br>     Longitude: 139.766706     </div>`)[0];
+                popup_36f9368d66fd66f1bcd2c31e0463ec50.setContent(html_003a2a0e580fcc74ff6125afa5e76b27);
+            
+        
+
+        marker_7bedcdeeb8ca880a65d7c239df1c571f.bindPopup(popup_36f9368d66fd66f1bcd2c31e0463ec50)
+        ;
+
+        
+    
+    
+            var marker_cabb7b9625001054651591550d34d6df = L.marker(
+                [39.5966853, 16.333055599019605],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_4da0ec6ee4dc37697ee0033db73b696e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_cabb7b9625001054651591550d34d6df.setIcon(icon_4da0ec6ee4dc37697ee0033db73b696e);
+        
+    
+        var popup_a37dffbd098f59689fbc8d36255e8d4d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_f2f5d0e6ac95deb33b63495e9b88bb1c = $(`<div id="html_f2f5d0e6ac95deb33b63495e9b88bb1c" style="width: 100.0%; height: 100.0%;">     <b>EarthAutomations</b><br>     <a href="https://www.earthautomations.com/" target="_blank">https://www.earthautomations.com/</a><br>     Latitude: 39.5966853<br>     Longitude: 16.333055599019605     </div>`)[0];
+                popup_a37dffbd098f59689fbc8d36255e8d4d.setContent(html_f2f5d0e6ac95deb33b63495e9b88bb1c);
+            
+        
+
+        marker_cabb7b9625001054651591550d34d6df.bindPopup(popup_a37dffbd098f59689fbc8d36255e8d4d)
+        ;
+
+        
+    
+    
+            var marker_e96dbe63d4d3e68c029c5e60b37617cb = L.marker(
+                [35.8717994, 14.5073748],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_8a04d6287446d03f6cc3e4f4783f4f2c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e96dbe63d4d3e68c029c5e60b37617cb.setIcon(icon_8a04d6287446d03f6cc3e4f4783f4f2c);
+        
+    
+        var popup_f03c5ae811843631855daf8fdeeb13bf = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_4146743d333c6f5f08181886649fee2b = $(`<div id="html_4146743d333c6f5f08181886649fee2b" style="width: 100.0%; height: 100.0%;">     <b>Ecostack Innovations</b><br>     <a href="https://www.ecostackinnovations.com/" target="_blank">https://www.ecostackinnovations.com/</a><br>     Latitude: 35.8717994<br>     Longitude: 14.5073748     </div>`)[0];
+                popup_f03c5ae811843631855daf8fdeeb13bf.setContent(html_4146743d333c6f5f08181886649fee2b);
+            
+        
+
+        marker_e96dbe63d4d3e68c029c5e60b37617cb.bindPopup(popup_f03c5ae811843631855daf8fdeeb13bf)
+        ;
+
+        
+    
+    
+            var marker_9a7e5edd3ed36b8e0dd3bb213d463197 = L.marker(
+                [32.0852997, 34.7818064],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_b62b31e49948e92de1c7a1d2bfaadd2f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9a7e5edd3ed36b8e0dd3bb213d463197.setIcon(icon_b62b31e49948e92de1c7a1d2bfaadd2f);
+        
+    
+        var popup_e447616b84c273a77c3e717677a95c71 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_092c24c9e390644f1b393f6ee4dc3774 = $(`<div id="html_092c24c9e390644f1b393f6ee4dc3774" style="width: 100.0%; height: 100.0%;">     <b>Fabumin</b><br>     <a href="www.fabumin.com" target="_blank">www.fabumin.com</a><br>     Latitude: 32.0852997<br>     Longitude: 34.7818064     </div>`)[0];
+                popup_e447616b84c273a77c3e717677a95c71.setContent(html_092c24c9e390644f1b393f6ee4dc3774);
+            
+        
+
+        marker_9a7e5edd3ed36b8e0dd3bb213d463197.bindPopup(popup_e447616b84c273a77c3e717677a95c71)
+        ;
+
+        
+    
+    
+            var marker_f39e66e8529c380d65971872e1ff91a8 = L.marker(
+                [39.89667135000001, 32.77366140625807],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_071494b63c4a22be2896d0fae352a864 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f39e66e8529c380d65971872e1ff91a8.setIcon(icon_071494b63c4a22be2896d0fae352a864);
+        
+    
+        var popup_df196d2ff6857b687f99cad92f5523b9 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_29b8dfbb8b62a4f59557f0e0e9694385 = $(`<div id="html_29b8dfbb8b62a4f59557f0e0e9694385" style="width: 100.0%; height: 100.0%;">     <b>FarmLabs Agriculture Technologies</b><br>     <a href="https://www.farmlabs.io" target="_blank">https://www.farmlabs.io</a><br>     Latitude: 39.89667135000001<br>     Longitude: 32.77366140625807     </div>`)[0];
+                popup_df196d2ff6857b687f99cad92f5523b9.setContent(html_29b8dfbb8b62a4f59557f0e0e9694385);
+            
+        
+
+        marker_f39e66e8529c380d65971872e1ff91a8.bindPopup(popup_df196d2ff6857b687f99cad92f5523b9)
+        ;
+
+        
+    
+    
+            var marker_1d0dc4628a1c03ce82f37a19bd3e230c = L.marker(
+                [41.388387, 2.1135553],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_278e8f0a8159f93a3a64ffb575a433ea = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_1d0dc4628a1c03ce82f37a19bd3e230c.setIcon(icon_278e8f0a8159f93a3a64ffb575a433ea);
+        
+    
+        var popup_50c6d9da78a30fb0ebfb3bfcdd80d2af = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_6cc456c2df0e81b5e772b25f65e6e13f = $(`<div id="html_6cc456c2df0e81b5e772b25f65e6e13f" style="width: 100.0%; height: 100.0%;">     <b>Folgrid</b><br>     <a href="www.folgrid.com" target="_blank">www.folgrid.com</a><br>     Latitude: 41.388387<br>     Longitude: 2.1135553     </div>`)[0];
+                popup_50c6d9da78a30fb0ebfb3bfcdd80d2af.setContent(html_6cc456c2df0e81b5e772b25f65e6e13f);
+            
+        
+
+        marker_1d0dc4628a1c03ce82f37a19bd3e230c.bindPopup(popup_50c6d9da78a30fb0ebfb3bfcdd80d2af)
+        ;
+
+        
+    
+    
+            var marker_5abe7d3af7e8ba8625ffab5dd87812f9 = L.marker(
+                [31.380233, 34.782058],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_cf8ac125c0b40080e8ce539824594512 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5abe7d3af7e8ba8625ffab5dd87812f9.setIcon(icon_cf8ac125c0b40080e8ce539824594512);
+        
+    
+        var popup_b72044c618215cb4c32e8c8a70440b3d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_7e5538826da62d84d727f7b610bb129e = $(`<div id="html_7e5538826da62d84d727f7b610bb129e" style="width: 100.0%; height: 100.0%;">     <b>Fungit Biosolutions</b><br>     <a href="www.fungitbio.com" target="_blank">www.fungitbio.com</a><br>     Latitude: 31.380233<br>     Longitude: 34.782058     </div>`)[0];
+                popup_b72044c618215cb4c32e8c8a70440b3d.setContent(html_7e5538826da62d84d727f7b610bb129e);
+            
+        
+
+        marker_5abe7d3af7e8ba8625ffab5dd87812f9.bindPopup(popup_b72044c618215cb4c32e8c8a70440b3d)
+        ;
+
+        
+    
+    
+            var marker_afca0b69d3ea059e901c34c7c42fd634 = L.marker(
+                [41.9211988, 12.4777601],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_3d7d118ed03eb02ee4fe7421f1314cc7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_afca0b69d3ea059e901c34c7c42fd634.setIcon(icon_3d7d118ed03eb02ee4fe7421f1314cc7);
+        
+    
+        var popup_abcc61b9c9a6cc523c3d33b4b1b56b36 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_dd100bed580325e8a298c4a6712e3a0e = $(`<div id="html_dd100bed580325e8a298c4a6712e3a0e" style="width: 100.0%; height: 100.0%;">     <b>FEDERPESCA - Federazione Nazionale delle Imprese di Pesca</b><br>     <a href="nan" target="_blank">nan</a><br>     Latitude: 41.9211988<br>     Longitude: 12.4777601     </div>`)[0];
+                popup_abcc61b9c9a6cc523c3d33b4b1b56b36.setContent(html_dd100bed580325e8a298c4a6712e3a0e);
+            
+        
+
+        marker_afca0b69d3ea059e901c34c7c42fd634.bindPopup(popup_abcc61b9c9a6cc523c3d33b4b1b56b36)
+        ;
+
+        
+    
+    
+            var marker_5a1fd2e7f8fd512503c600ea07e8c766 = L.marker(
+                [43.2760122, -7.469676113248616],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_10396997aea131742d5ca05dac023bef = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5a1fd2e7f8fd512503c600ea07e8c766.setIcon(icon_10396997aea131742d5ca05dac023bef);
+        
+    
+        var popup_1b37e3d60c8b079f3df61b6b1c7a59b9 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_fe479fdc7d1f40b99d3e8789cab87f95 = $(`<div id="html_fe479fdc7d1f40b99d3e8789cab87f95" style="width: 100.0%; height: 100.0%;">     <b>Innogando</b><br>     <a href="https://innogando.com" target="_blank">https://innogando.com</a><br>     Latitude: 43.2760122<br>     Longitude: -7.469676113248616     </div>`)[0];
+                popup_1b37e3d60c8b079f3df61b6b1c7a59b9.setContent(html_fe479fdc7d1f40b99d3e8789cab87f95);
+            
+        
+
+        marker_5a1fd2e7f8fd512503c600ea07e8c766.bindPopup(popup_1b37e3d60c8b079f3df61b6b1c7a59b9)
+        ;
+
+        
+    
+    
+            var marker_bf00ddbd037aec3cb0713717aab132bb = L.marker(
+                [41.8933203, 12.4829321],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_7b8d887184556d91643140dd9a19d6fa = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_bf00ddbd037aec3cb0713717aab132bb.setIcon(icon_7b8d887184556d91643140dd9a19d6fa);
+        
+    
+        var popup_2807683a6c4b8bd0f0b6d8a964827bac = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_b554afb733a259ddd8dc1ba69fc3ce6c = $(`<div id="html_b554afb733a259ddd8dc1ba69fc3ce6c" style="width: 100.0%; height: 100.0%;">     <b>Ocean Twist Biotechnology</b><br>     <a href="http://www.ocean-twist.com" target="_blank">http://www.ocean-twist.com</a><br>     Latitude: 41.8933203<br>     Longitude: 12.4829321     </div>`)[0];
+                popup_2807683a6c4b8bd0f0b6d8a964827bac.setContent(html_b554afb733a259ddd8dc1ba69fc3ce6c);
+            
+        
+
+        marker_bf00ddbd037aec3cb0713717aab132bb.bindPopup(popup_2807683a6c4b8bd0f0b6d8a964827bac)
+        ;
+
+        
+    
+    
+            var marker_fa7be481f5233fe6b3d4d64575da48df = L.marker(
+                [40.548666, -3.6893963],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_c9a140b850a1dae522e6a8ebe789668c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fa7be481f5233fe6b3d4d64575da48df.setIcon(icon_c9a140b850a1dae522e6a8ebe789668c);
+        
+    
+        var popup_8408d71126cb7010c5ad2243ad7cda72 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_579ceebf94cf45850d606ee8d91648c0 = $(`<div id="html_579ceebf94cf45850d606ee8d91648c0" style="width: 100.0%; height: 100.0%;">     <b>Ixorigue</b><br>     <a href="http://ixorigue.com" target="_blank">http://ixorigue.com</a><br>     Latitude: 40.548666<br>     Longitude: -3.6893963     </div>`)[0];
+                popup_8408d71126cb7010c5ad2243ad7cda72.setContent(html_579ceebf94cf45850d606ee8d91648c0);
+            
+        
+
+        marker_fa7be481f5233fe6b3d4d64575da48df.bindPopup(popup_8408d71126cb7010c5ad2243ad7cda72)
+        ;
+
+        
+    
+    
+            var marker_e15aebfaa1f3e77008eab720a47304d4 = L.marker(
+                [46.9959463, 7.4576417],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_451b4931dda921ad78240bd18121fabb = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e15aebfaa1f3e77008eab720a47304d4.setIcon(icon_451b4931dda921ad78240bd18121fabb);
+        
+    
+        var popup_1b36f58edb2a627bb8dd0fd1c4f5bc19 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_8a90d4224b5dafd78c31466ff94dad12 = $(`<div id="html_8a90d4224b5dafd78c31466ff94dad12" style="width: 100.0%; height: 100.0%;">     <b>KIDEMIS</b><br>     <a href="www.kidemis.com" target="_blank">www.kidemis.com</a><br>     Latitude: 46.9959463<br>     Longitude: 7.4576417     </div>`)[0];
+                popup_1b36f58edb2a627bb8dd0fd1c4f5bc19.setContent(html_8a90d4224b5dafd78c31466ff94dad12);
+            
+        
+
+        marker_e15aebfaa1f3e77008eab720a47304d4.bindPopup(popup_1b36f58edb2a627bb8dd0fd1c4f5bc19)
+        ;
+
+        
+    
+    
+            var marker_a973409a462e887495066944448cd12a = L.marker(
+                [41.3828939, 2.1774322],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_215022518e4d8429f5767a0ef78198ee = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a973409a462e887495066944448cd12a.setIcon(icon_215022518e4d8429f5767a0ef78198ee);
+        
+    
+        var popup_66e15bdaa28d06a11912628993f903f5 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_11fef4b388b5434b4856afd9dcb1b412 = $(`<div id="html_11fef4b388b5434b4856afd9dcb1b412" style="width: 100.0%; height: 100.0%;">     <b>Pack2Earth</b><br>     <a href="https://www.pack2earth.eco" target="_blank">https://www.pack2earth.eco</a><br>     Latitude: 41.3828939<br>     Longitude: 2.1774322     </div>`)[0];
+                popup_66e15bdaa28d06a11912628993f903f5.setContent(html_11fef4b388b5434b4856afd9dcb1b412);
+            
+        
+
+        marker_a973409a462e887495066944448cd12a.bindPopup(popup_66e15bdaa28d06a11912628993f903f5)
+        ;
+
+        
+    
+    
+            var marker_5ab50524f293c5ce338fc0b04d8b7fdb = L.marker(
+                [38.7062471, -9.4116388],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_b78320931e63b7c4d51b5357ea3cb77f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5ab50524f293c5ce338fc0b04d8b7fdb.setIcon(icon_b78320931e63b7c4d51b5357ea3cb77f);
+        
+    
+        var popup_afeebaf1ee944e9ff82e6834bb0640b8 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_1140078aff89f56df93e97156caf6c89 = $(`<div id="html_1140078aff89f56df93e97156caf6c89" style="width: 100.0%; height: 100.0%;">     <b>PreservaCoat</b><br>     <a href="https://www.f6s.com/preservacoat" target="_blank">https://www.f6s.com/preservacoat</a><br>     Latitude: 38.7062471<br>     Longitude: -9.4116388     </div>`)[0];
+                popup_afeebaf1ee944e9ff82e6834bb0640b8.setContent(html_1140078aff89f56df93e97156caf6c89);
+            
+        
+
+        marker_5ab50524f293c5ce338fc0b04d8b7fdb.bindPopup(popup_afeebaf1ee944e9ff82e6834bb0640b8)
+        ;
+
+        
+    
+    
+            var marker_37591f928072a359e909233c69d798b9 = L.marker(
+                [40.71692495638906, 8.552577781292602],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_a85b37b6df8ab22b806fe9955a02ac42 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_37591f928072a359e909233c69d798b9.setIcon(icon_a85b37b6df8ab22b806fe9955a02ac42);
+        
+    
+        var popup_d2397803e3bd21a286033dd6231683fb = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_a8893ba795d6d2158d131f681314d4af = $(`<div id="html_a8893ba795d6d2158d131f681314d4af" style="width: 100.0%; height: 100.0%;">     <b>Relicta - Innovation of Packaging</b><br>     <a href="http://www.relictabioplastics.com" target="_blank">http://www.relictabioplastics.com</a><br>     Latitude: 40.71692495638906<br>     Longitude: 8.552577781292602     </div>`)[0];
+                popup_d2397803e3bd21a286033dd6231683fb.setContent(html_a8893ba795d6d2158d131f681314d4af);
+            
+        
+
+        marker_37591f928072a359e909233c69d798b9.bindPopup(popup_d2397803e3bd21a286033dd6231683fb)
+        ;
+
+        
+    
+    
+            var marker_9c1c135f4e3843dc5efbe6eb7bb47f23 = L.marker(
+                [41.969905749319494, 12.64561218447004],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_a44ed94a34e2ed23596ff87424337275 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9c1c135f4e3843dc5efbe6eb7bb47f23.setIcon(icon_a44ed94a34e2ed23596ff87424337275);
+        
+    
+        var popup_49703705952cbecce2b7f0dfbd4b0cc6 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_6396ee9b5263d48dc0af5384981976d9 = $(`<div id="html_6396ee9b5263d48dc0af5384981976d9" style="width: 100.0%; height: 100.0%;">     <b>Yeastime S.r.l.</b><br>     <a href="http://www.yeastime.com" target="_blank">http://www.yeastime.com</a><br>     Latitude: 41.969905749319494<br>     Longitude: 12.64561218447004     </div>`)[0];
+                popup_49703705952cbecce2b7f0dfbd4b0cc6.setContent(html_6396ee9b5263d48dc0af5384981976d9);
+            
+        
+
+        marker_9c1c135f4e3843dc5efbe6eb7bb47f23.bindPopup(popup_49703705952cbecce2b7f0dfbd4b0cc6)
+        ;
+
+        
+    
+    
+            var marker_5d08951d94829f053dd157849ddffdfb = L.marker(
+                [51.5074456, -0.1277653],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_e4091608a951745197bc01fa4b688323 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5d08951d94829f053dd157849ddffdfb.setIcon(icon_e4091608a951745197bc01fa4b688323);
+        
+    
+        var popup_866a01c3b3aa12679ea35bcd434826f1 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_68a45ca980bb302339c84b6e4f4ae12d = $(`<div id="html_68a45ca980bb302339c84b6e4f4ae12d" style="width: 100.0%; height: 100.0%;">     <b>Earthly Biochar</b><br>     <a href="http://www.earthlybiochar.com" target="_blank">http://www.earthlybiochar.com</a><br>     Latitude: 51.5074456<br>     Longitude: -0.1277653     </div>`)[0];
+                popup_866a01c3b3aa12679ea35bcd434826f1.setContent(html_68a45ca980bb302339c84b6e4f4ae12d);
+            
+        
+
+        marker_5d08951d94829f053dd157849ddffdfb.bindPopup(popup_866a01c3b3aa12679ea35bcd434826f1)
+        ;
+
+        
+    
+    
+            var marker_a4427161b03f6578b7a816ed1ea42511 = L.marker(
+                [59.33112055, 18.03077875],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_2dd06e502fb14756b724ad55b992f5d3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a4427161b03f6578b7a816ed1ea42511.setIcon(icon_2dd06e502fb14756b724ad55b992f5d3);
+        
+    
+        var popup_ceae720566f7bedd11c70ac1039a8eb2 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_b8d16fa73c9a5f0f6352d9cab02c243f = $(`<div id="html_b8d16fa73c9a5f0f6352d9cab02c243f" style="width: 100.0%; height: 100.0%;">     <b>Planboo</b><br>     <a href="http://www.planboo.eco" target="_blank">http://www.planboo.eco</a><br>     Latitude: 59.33112055<br>     Longitude: 18.03077875     </div>`)[0];
+                popup_ceae720566f7bedd11c70ac1039a8eb2.setContent(html_b8d16fa73c9a5f0f6352d9cab02c243f);
+            
+        
+
+        marker_a4427161b03f6578b7a816ed1ea42511.bindPopup(popup_ceae720566f7bedd11c70ac1039a8eb2)
+        ;
+
+        
+    
+    
+            var marker_5729ab8a8251197b688e9dc969ec09e5 = L.marker(
+                [60.9948584, 24.46654],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_160660e18ecc1ee5d91f1de8ca077034 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5729ab8a8251197b688e9dc969ec09e5.setIcon(icon_160660e18ecc1ee5d91f1de8ca077034);
+        
+    
+        var popup_618edee3b2324b8041ebb69b495223d2 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_103e83e7caa6c2463fe1b4d1f01b0f6c = $(`<div id="html_103e83e7caa6c2463fe1b4d1f01b0f6c" style="width: 100.0%; height: 100.0%;">     <b>PUHI</b><br>     <a href="http://www.puhi.fi" target="_blank">http://www.puhi.fi</a><br>     Latitude: 60.9948584<br>     Longitude: 24.46654     </div>`)[0];
+                popup_618edee3b2324b8041ebb69b495223d2.setContent(html_103e83e7caa6c2463fe1b4d1f01b0f6c);
+            
+        
+
+        marker_5729ab8a8251197b688e9dc969ec09e5.bindPopup(popup_618edee3b2324b8041ebb69b495223d2)
+        ;
+
+        
+    
+    
+            var marker_a5fc43b2ba6a975170356d98c166d187 = L.marker(
+                [47.3744489, 8.5410422],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_0bd421b0550526d0b5c65c22b42dfc74 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a5fc43b2ba6a975170356d98c166d187.setIcon(icon_0bd421b0550526d0b5c65c22b42dfc74);
+        
+    
+        var popup_22ea67fa8f7effea32fd0e0637facc8c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_0bc01cac89de665cda355ad30f159749 = $(`<div id="html_0bc01cac89de665cda355ad30f159749" style="width: 100.0%; height: 100.0%;">     <b>Cotierra</b><br>     <a href="https://cotierra.com" target="_blank">https://cotierra.com</a><br>     Latitude: 47.3744489<br>     Longitude: 8.5410422     </div>`)[0];
+                popup_22ea67fa8f7effea32fd0e0637facc8c.setContent(html_0bc01cac89de665cda355ad30f159749);
+            
+        
+
+        marker_a5fc43b2ba6a975170356d98c166d187.bindPopup(popup_22ea67fa8f7effea32fd0e0637facc8c)
+        ;
+
+        
+    
+    
+            var marker_de2d368f2f833ea9d545e943210af192 = L.marker(
+                [51.4360625, -2.8526531],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_4463c926bfaac935afcc9b83471ece21 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_de2d368f2f833ea9d545e943210af192.setIcon(icon_4463c926bfaac935afcc9b83471ece21);
+        
+    
+        var popup_a9dc0c4c21e2cd06f13ce001b7707964 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_0132dab2a39162a4e7080670b6b46ca9 = $(`<div id="html_0132dab2a39162a4e7080670b6b46ca9" style="width: 100.0%; height: 100.0%;">     <b>Carbon Gold Ltd</b><br>     <a href="https://www.carbongold.com" target="_blank">https://www.carbongold.com</a><br>     Latitude: 51.4360625<br>     Longitude: -2.8526531     </div>`)[0];
+                popup_a9dc0c4c21e2cd06f13ce001b7707964.setContent(html_0132dab2a39162a4e7080670b6b46ca9);
+            
+        
+
+        marker_de2d368f2f833ea9d545e943210af192.bindPopup(popup_a9dc0c4c21e2cd06f13ce001b7707964)
+        ;
+
+        
+    
+    
+            var marker_8ecb7509504c39feb6d9193298d13173 = L.marker(
+                [52.4009309, 13.0591397],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_b134a95cf5ed5c8183a6d46b835f701f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8ecb7509504c39feb6d9193298d13173.setIcon(icon_b134a95cf5ed5c8183a6d46b835f701f);
+        
+    
+        var popup_6c7393c1c5686a73eb2bb68c56b147d9 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_06909408cd83f4992732bc98a4fc482f = $(`<div id="html_06909408cd83f4992732bc98a4fc482f" style="width: 100.0%; height: 100.0%;">     <b>Point2Hectare</b><br>     <a href="https://www.p2ha.com/" target="_blank">https://www.p2ha.com/</a><br>     Latitude: 52.4009309<br>     Longitude: 13.0591397     </div>`)[0];
+                popup_6c7393c1c5686a73eb2bb68c56b147d9.setContent(html_06909408cd83f4992732bc98a4fc482f);
+            
+        
+
+        marker_8ecb7509504c39feb6d9193298d13173.bindPopup(popup_6c7393c1c5686a73eb2bb68c56b147d9)
+        ;
+
+        
+    
+    
+            var marker_2b53417742c87a80db06fefd30685e55 = L.marker(
+                [55.722457, 12.606098],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_f8b2b768fa844a7f17fc3ba9ed568234 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2b53417742c87a80db06fefd30685e55.setIcon(icon_f8b2b768fa844a7f17fc3ba9ed568234);
+        
+    
+        var popup_99854f2a1d39345fbfab5df852c41c74 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_185fb8ccc93307f139f498e5d54a3a3f = $(`<div id="html_185fb8ccc93307f139f498e5d54a3a3f" style="width: 100.0%; height: 100.0%;">     <b>MASH Makes</b><br>     <a href="https://www.mashmakes.com" target="_blank">https://www.mashmakes.com</a><br>     Latitude: 55.722457<br>     Longitude: 12.606098     </div>`)[0];
+                popup_99854f2a1d39345fbfab5df852c41c74.setContent(html_185fb8ccc93307f139f498e5d54a3a3f);
+            
+        
+
+        marker_2b53417742c87a80db06fefd30685e55.bindPopup(popup_99854f2a1d39345fbfab5df852c41c74)
+        ;
+
+        
+    
+    
+            var marker_dbd1752f9c00bbc919487bb134590feb = L.marker(
+                [59.4160213, 9.0882162],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_13035d94f7339479781a4e542c09cb5b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_dbd1752f9c00bbc919487bb134590feb.setIcon(icon_13035d94f7339479781a4e542c09cb5b);
+        
+    
+        var popup_fb4dd55b5bb322f9c744cde75cc1b5b8 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_1a322e9c80f0f67bbb8283b2a909e377 = $(`<div id="html_1a322e9c80f0f67bbb8283b2a909e377" style="width: 100.0%; height: 100.0%;">     <b>Standard Bio</b><br>     <a href="http://www.standard.bio" target="_blank">http://www.standard.bio</a><br>     Latitude: 59.4160213<br>     Longitude: 9.0882162     </div>`)[0];
+                popup_fb4dd55b5bb322f9c744cde75cc1b5b8.setContent(html_1a322e9c80f0f67bbb8283b2a909e377);
+            
+        
+
+        marker_dbd1752f9c00bbc919487bb134590feb.bindPopup(popup_fb4dd55b5bb322f9c744cde75cc1b5b8)
+        ;
+
+        
+    
+    
+            var marker_e03cf941f633097af51a2b1bff4f5500 = L.marker(
+                [44.840934, -0.5702746],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_e1c7ea06b8f78d8c9e57c6818552fd78 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e03cf941f633097af51a2b1bff4f5500.setIcon(icon_e1c7ea06b8f78d8c9e57c6818552fd78);
+        
+    
+        var popup_2d9fc425ee192b187a0f58a0f7005732 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_70e0dc267a2727ac2ecbdb1f7a1ea120 = $(`<div id="html_70e0dc267a2727ac2ecbdb1f7a1ea120" style="width: 100.0%; height: 100.0%;">     <b>netcarbon</b><br>     <a href="http://www.netcarbon.fr" target="_blank">http://www.netcarbon.fr</a><br>     Latitude: 44.840934<br>     Longitude: -0.5702746     </div>`)[0];
+                popup_2d9fc425ee192b187a0f58a0f7005732.setContent(html_70e0dc267a2727ac2ecbdb1f7a1ea120);
+            
+        
+
+        marker_e03cf941f633097af51a2b1bff4f5500.bindPopup(popup_2d9fc425ee192b187a0f58a0f7005732)
+        ;
+
+        
+    
+    
+            var marker_1c26d59822743635c42a7a224dd5eec6 = L.marker(
+                [52.9387428, -1.2002956927457427],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_80fb9dd4dd56ee1eafd8e2f14feb5ec3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_1c26d59822743635c42a7a224dd5eec6.setIcon(icon_80fb9dd4dd56ee1eafd8e2f14feb5ec3);
+        
+    
+        var popup_3c047cfcf293e329a597f5cc14e0920b = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_081cb1cae75ab685b705324e4847a256 = $(`<div id="html_081cb1cae75ab685b705324e4847a256" style="width: 100.0%; height: 100.0%;">     <b>Deep Branch (acquired by Aerbio 2024)</b><br>     <a href="http://www.deepbranch.com" target="_blank">http://www.deepbranch.com</a><br>     Latitude: 52.9387428<br>     Longitude: -1.2002956927457427     </div>`)[0];
+                popup_3c047cfcf293e329a597f5cc14e0920b.setContent(html_081cb1cae75ab685b705324e4847a256);
+            
+        
+
+        marker_1c26d59822743635c42a7a224dd5eec6.bindPopup(popup_3c047cfcf293e329a597f5cc14e0920b)
+        ;
+
+        
+    
+    
+            var marker_33012dd8cbd0e12f12cddd5eb90b11c2 = L.marker(
+                [44.8461592, -0.5754912],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_277f5144158b00c35cd2f8a8c1830ccb = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_33012dd8cbd0e12f12cddd5eb90b11c2.setIcon(icon_277f5144158b00c35cd2f8a8c1830ccb);
+        
+    
+        var popup_c26f7b3a43cd1eec48816ac1b8e8a613 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_6c618084bfb1f3ec53b8934eaada07bd = $(`<div id="html_6c618084bfb1f3ec53b8934eaada07bd" style="width: 100.0%; height: 100.0%;">     <b>Horizom | Le bambou au service de la transition 🌱</b><br>     <a href="nan" target="_blank">nan</a><br>     Latitude: 44.8461592<br>     Longitude: -0.5754912     </div>`)[0];
+                popup_c26f7b3a43cd1eec48816ac1b8e8a613.setContent(html_6c618084bfb1f3ec53b8934eaada07bd);
+            
+        
+
+        marker_33012dd8cbd0e12f12cddd5eb90b11c2.bindPopup(popup_c26f7b3a43cd1eec48816ac1b8e8a613)
+        ;
+
+        
+    
+    
+            var marker_080e904544a582177978ec76ccf6c5fc = L.marker(
+                [55.861155, -4.2501687],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_1bab3959aaacd87775eb40af8f01ad0f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_080e904544a582177978ec76ccf6c5fc.setIcon(icon_1bab3959aaacd87775eb40af8f01ad0f);
+        
+    
+        var popup_22268fb0df4d70418ef099747544a86e = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_8b06d2d13072e35a544d0a601652df94 = $(`<div id="html_8b06d2d13072e35a544d0a601652df94" style="width: 100.0%; height: 100.0%;">     <b>Seawater Solutions </b><br>     <a href="https://seawatersolutions.org/" target="_blank">https://seawatersolutions.org/</a><br>     Latitude: 55.861155<br>     Longitude: -4.2501687     </div>`)[0];
+                popup_22268fb0df4d70418ef099747544a86e.setContent(html_8b06d2d13072e35a544d0a601652df94);
+            
+        
+
+        marker_080e904544a582177978ec76ccf6c5fc.bindPopup(popup_22268fb0df4d70418ef099747544a86e)
+        ;
+
+        
+    
+    
+            var marker_756edf270843799e0e98f8d0b02c419f = L.marker(
+                [52.6228289, 1.2198023096410249],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_b6c4f394a22b0c122ada38cdc82fa1b5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_756edf270843799e0e98f8d0b02c419f.setIcon(icon_b6c4f394a22b0c122ada38cdc82fa1b5);
+        
+    
+        var popup_f36792132635a58334cd5321bc34964c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_eb1d9d06b74cde2fcab6c7362952ceb1 = $(`<div id="html_eb1d9d06b74cde2fcab6c7362952ceb1" style="width: 100.0%; height: 100.0%;">     <b>ALORA</b><br>     <a href="http://www.alora.world" target="_blank">http://www.alora.world</a><br>     Latitude: 52.6228289<br>     Longitude: 1.2198023096410249     </div>`)[0];
+                popup_f36792132635a58334cd5321bc34964c.setContent(html_eb1d9d06b74cde2fcab6c7362952ceb1);
+            
+        
+
+        marker_756edf270843799e0e98f8d0b02c419f.bindPopup(popup_f36792132635a58334cd5321bc34964c)
+        ;
+
+        
+    
+    
+            var marker_4d045d2998fb278437f93decece83fc0 = L.marker(
+                [4.5664176, -75.7507081],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_ebe1d427941046f7f7a7223b5dc6ea3b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4d045d2998fb278437f93decece83fc0.setIcon(icon_ebe1d427941046f7f7a7223b5dc6ea3b);
+        
+    
+        var popup_b3a34fc0d2f49affb17a1440d666a56c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_a0bd637a70d6a369d300bf7624744351 = $(`<div id="html_a0bd637a70d6a369d300bf7624744351" style="width: 100.0%; height: 100.0%;">     <b>NuAgua</b><br>     <a href="http://nuagua.com" target="_blank">http://nuagua.com</a><br>     Latitude: 4.5664176<br>     Longitude: -75.7507081     </div>`)[0];
+                popup_b3a34fc0d2f49affb17a1440d666a56c.setContent(html_a0bd637a70d6a369d300bf7624744351);
+            
+        
+
+        marker_4d045d2998fb278437f93decece83fc0.bindPopup(popup_b3a34fc0d2f49affb17a1440d666a56c)
+        ;
+
+        
+    
+    
+            var marker_fa4c66d66faca97d2c1e38126bebacfb = L.marker(
+                [35.8919484, -78.8895965],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_5bbbd6518e1bd1b37be0d34da6befd14 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fa4c66d66faca97d2c1e38126bebacfb.setIcon(icon_5bbbd6518e1bd1b37be0d34da6befd14);
+        
+    
+        var popup_b6887662e957ef68679170b01111c5ac = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_591c0dcf62cc10a0a8557baba89b8944 = $(`<div id="html_591c0dcf62cc10a0a8557baba89b8944" style="width: 100.0%; height: 100.0%;">     <b>Plant Response </b><br>     <a href="http://www.plantresponse.com" target="_blank">http://www.plantresponse.com</a><br>     Latitude: 35.8919484<br>     Longitude: -78.8895965     </div>`)[0];
+                popup_b6887662e957ef68679170b01111c5ac.setContent(html_591c0dcf62cc10a0a8557baba89b8944);
+            
+        
+
+        marker_fa4c66d66faca97d2c1e38126bebacfb.bindPopup(popup_b6887662e957ef68679170b01111c5ac)
+        ;
+
+        
+    
+    
+            var marker_fc573db798867f5f679722bc287809fd = L.marker(
+                [48.63088254779305, -1.9839691200676324],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_d529fd354141268e3b469897fa29a3c2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fc573db798867f5f679722bc287809fd.setIcon(icon_d529fd354141268e3b469897fa29a3c2);
+        
+    
+        var popup_6cfc3f90086e09431fa744691324294b = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_113e746b2d1bdfc42b97fc71bdcf1c93 = $(`<div id="html_113e746b2d1bdfc42b97fc71bdcf1c93" style="width: 100.0%; height: 100.0%;">     <b>GAIAGO</b><br>     <a href="https://gaiago.eu" target="_blank">https://gaiago.eu</a><br>     Latitude: 48.63088254779305<br>     Longitude: -1.9839691200676324     </div>`)[0];
+                popup_6cfc3f90086e09431fa744691324294b.setContent(html_113e746b2d1bdfc42b97fc71bdcf1c93);
+            
+        
+
+        marker_fc573db798867f5f679722bc287809fd.bindPopup(popup_6cfc3f90086e09431fa744691324294b)
+        ;
+
+        
+    
+    
+            var marker_e94167462c30abbc10939115df6db784 = L.marker(
+                [42.6977028, 23.3217359],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_7763fb84e6d3ad0da2a30342a106046b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e94167462c30abbc10939115df6db784.setIcon(icon_7763fb84e6d3ad0da2a30342a106046b);
+        
+    
+        var popup_9ff6fdb3304f9c4c9879bc17f9a17b2c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d6f0fc57d63e5a7ce7178e48b303f8fb = $(`<div id="html_d6f0fc57d63e5a7ce7178e48b303f8fb" style="width: 100.0%; height: 100.0%;">     <b>AgrovarCC</b><br>     <a href="https://agrovar.bg/en" target="_blank">https://agrovar.bg/en</a><br>     Latitude: 42.6977028<br>     Longitude: 23.3217359     </div>`)[0];
+                popup_9ff6fdb3304f9c4c9879bc17f9a17b2c.setContent(html_d6f0fc57d63e5a7ce7178e48b303f8fb);
+            
+        
+
+        marker_e94167462c30abbc10939115df6db784.bindPopup(popup_9ff6fdb3304f9c4c9879bc17f9a17b2c)
+        ;
+
+        
+    
+    
+            var marker_8af557ad020e7df98e237d8b6a69ef05 = L.marker(
+                [52.5006982, 13.420663708803659],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_958007f3862f7c41010ee12aaf1fe770 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8af557ad020e7df98e237d8b6a69ef05.setIcon(icon_958007f3862f7c41010ee12aaf1fe770);
+        
+    
+        var popup_b978c77f02e2db65c3be1e1a363319e1 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_ac6dfacb14177caf042dc20808d6201a = $(`<div id="html_ac6dfacb14177caf042dc20808d6201a" style="width: 100.0%; height: 100.0%;">     <b>Seqana</b><br>     <a href="http://seqana.com" target="_blank">http://seqana.com</a><br>     Latitude: 52.5006982<br>     Longitude: 13.420663708803659     </div>`)[0];
+                popup_b978c77f02e2db65c3be1e1a363319e1.setContent(html_ac6dfacb14177caf042dc20808d6201a);
+            
+        
+
+        marker_8af557ad020e7df98e237d8b6a69ef05.bindPopup(popup_b978c77f02e2db65c3be1e1a363319e1)
+        ;
+
+        
+    
+    
+            var marker_7048ae411763c53e9ced02562f5822ad = L.marker(
+                [51.5074456, -0.1277653],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_66d85145a1cc7110768599eb5eee49c1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7048ae411763c53e9ced02562f5822ad.setIcon(icon_66d85145a1cc7110768599eb5eee49c1);
+        
+    
+        var popup_ee0c78d1fedc77442c09f090a1a7a8db = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_0036de1ea23c5ff1922a14c6b234e029 = $(`<div id="html_0036de1ea23c5ff1922a14c6b234e029" style="width: 100.0%; height: 100.0%;">     <b>Downforce Technologies</b><br>     <a href="https://www.downforce.tech" target="_blank">https://www.downforce.tech</a><br>     Latitude: 51.5074456<br>     Longitude: -0.1277653     </div>`)[0];
+                popup_ee0c78d1fedc77442c09f090a1a7a8db.setContent(html_0036de1ea23c5ff1922a14c6b234e029);
+            
+        
+
+        marker_7048ae411763c53e9ced02562f5822ad.bindPopup(popup_ee0c78d1fedc77442c09f090a1a7a8db)
+        ;
+
+        
+    
+    
+            var marker_e21e27fa0d18a22a2274f5ecb676fb6c = L.marker(
+                [53.3844018, 9.0026368],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_4db076c8413f337912af3159f17ee579 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e21e27fa0d18a22a2274f5ecb676fb6c.setIcon(icon_4db076c8413f337912af3159f17ee579);
+        
+    
+        var popup_f14153bb8a694440b9961345fe15bb96 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_faf26b020f6c650e4404aa53cb8765f4 = $(`<div id="html_faf26b020f6c650e4404aa53cb8765f4" style="width: 100.0%; height: 100.0%;">     <b>ZukunftMoor</b><br>     <a href="https://zukunftmoor.de/" target="_blank">https://zukunftmoor.de/</a><br>     Latitude: 53.3844018<br>     Longitude: 9.0026368     </div>`)[0];
+                popup_f14153bb8a694440b9961345fe15bb96.setContent(html_faf26b020f6c650e4404aa53cb8765f4);
+            
+        
+
+        marker_e21e27fa0d18a22a2274f5ecb676fb6c.bindPopup(popup_f14153bb8a694440b9961345fe15bb96)
+        ;
+
+        
+    
+    
+            var marker_d3d39b3566f3b0bc7c75c23bc0a8743b = L.marker(
+                [51.5074456, -0.1277653],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_0d2deae29714b000d464ad3a8515c940 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d3d39b3566f3b0bc7c75c23bc0a8743b.setIcon(icon_0d2deae29714b000d464ad3a8515c940);
+        
+    
+        var popup_cdfe9d1778859002335b266b830e91bb = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_ce503e169276e1a7d35368ce53587e03 = $(`<div id="html_ce503e169276e1a7d35368ce53587e03" style="width: 100.0%; height: 100.0%;">     <b>Elaniti</b><br>     <a href="https://elaniti.com" target="_blank">https://elaniti.com</a><br>     Latitude: 51.5074456<br>     Longitude: -0.1277653     </div>`)[0];
+                popup_cdfe9d1778859002335b266b830e91bb.setContent(html_ce503e169276e1a7d35368ce53587e03);
+            
+        
+
+        marker_d3d39b3566f3b0bc7c75c23bc0a8743b.bindPopup(popup_cdfe9d1778859002335b266b830e91bb)
+        ;
+
+        
+    
+    
+            var marker_f01841a02b0eb9713299fe068e7df452 = L.marker(
+                [48.3196484, 16.0790652],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_7efea21eb1aea0c988cd502ecc8900c9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f01841a02b0eb9713299fe068e7df452.setIcon(icon_7efea21eb1aea0c988cd502ecc8900c9);
+        
+    
+        var popup_77e6acfb4bb6bf4d6c0c130341142dc8 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_5ad8c53931b5d2152bf062e686a5fb9c = $(`<div id="html_5ad8c53931b5d2152bf062e686a5fb9c" style="width: 100.0%; height: 100.0%;">     <b>AgroBiogel GmbH</b><br>     <a href="https://www.agrobiogel.com/" target="_blank">https://www.agrobiogel.com/</a><br>     Latitude: 48.3196484<br>     Longitude: 16.0790652     </div>`)[0];
+                popup_77e6acfb4bb6bf4d6c0c130341142dc8.setContent(html_5ad8c53931b5d2152bf062e686a5fb9c);
+            
+        
+
+        marker_f01841a02b0eb9713299fe068e7df452.bindPopup(popup_77e6acfb4bb6bf4d6c0c130341142dc8)
+        ;
+
+        
+    
+    
+            var marker_68b467b61ddd10d1aac9aff2c0e3229d = L.marker(
+                [55.8829582, -3.5175773],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_d029f44dbd6e8da88962ef50517513b0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_68b467b61ddd10d1aac9aff2c0e3229d.setIcon(icon_d029f44dbd6e8da88962ef50517513b0);
+        
+    
+        var popup_c44e848504f94bab2c891cdffdfb5b98 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_88d10a1ee821116cdd51df21899c522c = $(`<div id="html_88d10a1ee821116cdd51df21899c522c" style="width: 100.0%; height: 100.0%;">     <b>SilviBio</b><br>     <a href="http://silvibio.com" target="_blank">http://silvibio.com</a><br>     Latitude: 55.8829582<br>     Longitude: -3.5175773     </div>`)[0];
+                popup_c44e848504f94bab2c891cdffdfb5b98.setContent(html_88d10a1ee821116cdd51df21899c522c);
+            
+        
+
+        marker_68b467b61ddd10d1aac9aff2c0e3229d.bindPopup(popup_c44e848504f94bab2c891cdffdfb5b98)
+        ;
+
+        
+    
+    
+            var marker_fe42abe6088e4df214fce0abaa651715 = L.marker(
+                [45.538460248948525, 9.937635535852102],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_cfb0b90bcdbbf8bd1b4e3345dc68a1fa = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fe42abe6088e4df214fce0abaa651715.setIcon(icon_cfb0b90bcdbbf8bd1b4e3345dc68a1fa);
+        
+    
+        var popup_68f7babd68e5c62dab7e9d4c8ff29766 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_7864ea39bd4c1c7106707613a8613ba4 = $(`<div id="html_7864ea39bd4c1c7106707613a8613ba4" style="width: 100.0%; height: 100.0%;">     <b>Planet srl</b><br>     <a href="http://nogreenwithoutblue.it/" target="_blank">http://nogreenwithoutblue.it/</a><br>     Latitude: 45.538460248948525<br>     Longitude: 9.937635535852102     </div>`)[0];
+                popup_68f7babd68e5c62dab7e9d4c8ff29766.setContent(html_7864ea39bd4c1c7106707613a8613ba4);
+            
+        
+
+        marker_fe42abe6088e4df214fce0abaa651715.bindPopup(popup_68f7babd68e5c62dab7e9d4c8ff29766)
+        ;
+
+        
+    
+    
+            var marker_69ca651a65373875e032d97babd44c44 = L.marker(
+                [52.3563197, 4.9582754],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_e06805853f6aab66b8b4d58d2cfc113c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_69ca651a65373875e032d97babd44c44.setIcon(icon_e06805853f6aab66b8b4d58d2cfc113c);
+        
+    
+        var popup_8ee1ada3969a5d3cf591c24ab9814f21 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_55d9e4cdf3f4b44bd8592e4f1df680c2 = $(`<div id="html_55d9e4cdf3f4b44bd8592e4f1df680c2" style="width: 100.0%; height: 100.0%;">     <b>Meridia</b><br>     <a href="http://www.meridia.land" target="_blank">http://www.meridia.land</a><br>     Latitude: 52.3563197<br>     Longitude: 4.9582754     </div>`)[0];
+                popup_8ee1ada3969a5d3cf591c24ab9814f21.setContent(html_55d9e4cdf3f4b44bd8592e4f1df680c2);
+            
+        
+
+        marker_69ca651a65373875e032d97babd44c44.bindPopup(popup_8ee1ada3969a5d3cf591c24ab9814f21)
+        ;
+
+        
+    
+    
+            var marker_b2badf0ea8b12393b6b95b93e4202495 = L.marker(
+                [52.52742145000001, 13.402367486823765],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_e354c1ace732cfa738ed9cf3b0109b9f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b2badf0ea8b12393b6b95b93e4202495.setIcon(icon_e354c1ace732cfa738ed9cf3b0109b9f);
+        
+    
+        var popup_87b315b88aa03536b81580ad7c4926e1 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_f12e1f5ad2897ae9fcc3b57595d8769b = $(`<div id="html_f12e1f5ad2897ae9fcc3b57595d8769b" style="width: 100.0%; height: 100.0%;">     <b>Klim</b><br>     <a href="https://www.klim.eco/" target="_blank">https://www.klim.eco/</a><br>     Latitude: 52.52742145000001<br>     Longitude: 13.402367486823765     </div>`)[0];
+                popup_87b315b88aa03536b81580ad7c4926e1.setContent(html_f12e1f5ad2897ae9fcc3b57595d8769b);
+            
+        
+
+        marker_b2badf0ea8b12393b6b95b93e4202495.bindPopup(popup_87b315b88aa03536b81580ad7c4926e1)
+        ;
+
+        
+    
+    
+            var marker_7a81fd34d50d4be3827ea2fa651ab92f = L.marker(
+                [52.510885, 13.3989367],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_1424b72076ab6e3e3abe43fdaee11650 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7a81fd34d50d4be3827ea2fa651ab92f.setIcon(icon_1424b72076ab6e3e3abe43fdaee11650);
+        
+    
+        var popup_98778de812bcaa735043704c0b583629 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_24d7481158122eb5b2e4b7a41c3a94e4 = $(`<div id="html_24d7481158122eb5b2e4b7a41c3a94e4" style="width: 100.0%; height: 100.0%;">     <b>Climate Farmers</b><br>     <a href="http://www.climatefarmers.org" target="_blank">http://www.climatefarmers.org</a><br>     Latitude: 52.510885<br>     Longitude: 13.3989367     </div>`)[0];
+                popup_98778de812bcaa735043704c0b583629.setContent(html_24d7481158122eb5b2e4b7a41c3a94e4);
+            
+        
+
+        marker_7a81fd34d50d4be3827ea2fa651ab92f.bindPopup(popup_98778de812bcaa735043704c0b583629)
+        ;
+
+        
+    
+    
+            var marker_c9c0c613d21782205c6e13aa9e3d4641 = L.marker(
+                [50.65970875, 4.616973832414532],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_43e970e997f57fdbc1400638d7697315 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c9c0c613d21782205c6e13aa9e3d4641.setIcon(icon_43e970e997f57fdbc1400638d7697315);
+        
+    
+        var popup_539492886a23119f2a13ae75f0a00ce5 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_7ebb9daf53da7dd4e78c079ab3d15016 = $(`<div id="html_7ebb9daf53da7dd4e78c079ab3d15016" style="width: 100.0%; height: 100.0%;">     <b>Soil Capital</b><br>     <a href="http://www.soilcapital.com" target="_blank">http://www.soilcapital.com</a><br>     Latitude: 50.65970875<br>     Longitude: 4.616973832414532     </div>`)[0];
+                popup_539492886a23119f2a13ae75f0a00ce5.setContent(html_7ebb9daf53da7dd4e78c079ab3d15016);
+            
+        
+
+        marker_c9c0c613d21782205c6e13aa9e3d4641.bindPopup(popup_539492886a23119f2a13ae75f0a00ce5)
+        ;
+
+        
+    
+    
+            var marker_0c1208e2703712bcc6fe81fab0609184 = L.marker(
+                [52.390096, 4.8885799],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_f555ae9ad14afb960ee4aeb04a986566 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_0c1208e2703712bcc6fe81fab0609184.setIcon(icon_f555ae9ad14afb960ee4aeb04a986566);
+        
+    
+        var popup_d1f6991895929167235c26888302b446 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_4a50099594f37cf5f0346f6973688f25 = $(`<div id="html_4a50099594f37cf5f0346f6973688f25" style="width: 100.0%; height: 100.0%;">     <b>reNature</b><br>     <a href="https://www.renature.co/" target="_blank">https://www.renature.co/</a><br>     Latitude: 52.390096<br>     Longitude: 4.8885799     </div>`)[0];
+                popup_d1f6991895929167235c26888302b446.setContent(html_4a50099594f37cf5f0346f6973688f25);
+            
+        
+
+        marker_0c1208e2703712bcc6fe81fab0609184.bindPopup(popup_d1f6991895929167235c26888302b446)
+        ;
+
+        
+    
+    
+            var marker_e81b6750d394344258278a680a6c78fb = L.marker(
+                [48.83246425, 2.372559771130674],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_c9fd5dd05d9362738b55d8fc49514476 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e81b6750d394344258278a680a6c78fb.setIcon(icon_c9fd5dd05d9362738b55d8fc49514476);
+        
+    
+        var popup_f9c27005e7765f808c60690717f5e4a9 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_ce7d4c5af0bb1583dbc4c618dad7e78f = $(`<div id="html_ce7d4c5af0bb1583dbc4c618dad7e78f" style="width: 100.0%; height: 100.0%;">     <b>AgroLeague</b><br>     <a href="https://www.agro-league.com/" target="_blank">https://www.agro-league.com/</a><br>     Latitude: 48.83246425<br>     Longitude: 2.372559771130674     </div>`)[0];
+                popup_f9c27005e7765f808c60690717f5e4a9.setContent(html_ce7d4c5af0bb1583dbc4c618dad7e78f);
+            
+        
+
+        marker_e81b6750d394344258278a680a6c78fb.bindPopup(popup_f9c27005e7765f808c60690717f5e4a9)
+        ;
+
+        
+    
+    
+            var marker_b00f0ddf049a236413aeef65547b54d5 = L.marker(
+                [38.0144311, 23.7482863],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_a1af298506c504388cf0bf9805619c25 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b00f0ddf049a236413aeef65547b54d5.setIcon(icon_a1af298506c504388cf0bf9805619c25);
+        
+    
+        var popup_6dd597cbeabc8ea781d3c872845b8f5a = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_16e89aa905b61ce76ba86188f3c41364 = $(`<div id="html_16e89aa905b61ce76ba86188f3c41364" style="width: 100.0%; height: 100.0%;">     <b>Wikifarmer </b><br>     <a href="https://wikifarmer.com" target="_blank">https://wikifarmer.com</a><br>     Latitude: 38.0144311<br>     Longitude: 23.7482863     </div>`)[0];
+                popup_6dd597cbeabc8ea781d3c872845b8f5a.setContent(html_16e89aa905b61ce76ba86188f3c41364);
+            
+        
+
+        marker_b00f0ddf049a236413aeef65547b54d5.bindPopup(popup_6dd597cbeabc8ea781d3c872845b8f5a)
+        ;
+
+        
+    
+    
+            var marker_18b908afac9bb638f5a32dbcd1d66aac = L.marker(
+                [48.8700868, 2.3453931],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_f920032daa9c697272bdff314b3a5453 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_18b908afac9bb638f5a32dbcd1d66aac.setIcon(icon_f920032daa9c697272bdff314b3a5453);
+        
+    
+        var popup_579dd92da99deb730f6193e525b09120 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_4b8336a874ed074929b3eb8c7f5dcb75 = $(`<div id="html_4b8336a874ed074929b3eb8c7f5dcb75" style="width: 100.0%; height: 100.0%;">     <b>Genesis</b><br>     <a href="https://www.genesis.live/" target="_blank">https://www.genesis.live/</a><br>     Latitude: 48.8700868<br>     Longitude: 2.3453931     </div>`)[0];
+                popup_579dd92da99deb730f6193e525b09120.setContent(html_4b8336a874ed074929b3eb8c7f5dcb75);
+            
+        
+
+        marker_18b908afac9bb638f5a32dbcd1d66aac.bindPopup(popup_579dd92da99deb730f6193e525b09120)
+        ;
+
+        
+    
+    
+            var marker_a91319f344144a958ce1dbf8ece24f58 = L.marker(
+                [51.5074456, -0.1277653],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_0b85d7c7b3a0c8f1219d35ff8ec19a3d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a91319f344144a958ce1dbf8ece24f58.setIcon(icon_0b85d7c7b3a0c8f1219d35ff8ec19a3d);
+        
+    
+        var popup_65ccffd13f1351ec377e1dc388bd7c2f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_8e3d2466eb313f4b122b64d8dbbcbd57 = $(`<div id="html_8e3d2466eb313f4b122b64d8dbbcbd57" style="width: 100.0%; height: 100.0%;">     <b>Verna</b><br>     <a href="https://verna.earth" target="_blank">https://verna.earth</a><br>     Latitude: 51.5074456<br>     Longitude: -0.1277653     </div>`)[0];
+                popup_65ccffd13f1351ec377e1dc388bd7c2f.setContent(html_8e3d2466eb313f4b122b64d8dbbcbd57);
+            
+        
+
+        marker_a91319f344144a958ce1dbf8ece24f58.bindPopup(popup_65ccffd13f1351ec377e1dc388bd7c2f)
+        ;
+
+        
+    
+    
+            var marker_561bc745f9764c1f06883ca29f8986b2 = L.marker(
+                [52.5294733, 13.4018415],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_cc46e4ab0dbc4a35de71820a48414b82 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_561bc745f9764c1f06883ca29f8986b2.setIcon(icon_cc46e4ab0dbc4a35de71820a48414b82);
+        
+    
+        var popup_607211632147a86e654c4a3153b6ca0e = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d8dc90fd44f9db03cc0ed9ce349ad7cc = $(`<div id="html_d8dc90fd44f9db03cc0ed9ce349ad7cc" style="width: 100.0%; height: 100.0%;">     <b>SmartCloudFarming</b><br>     <a href="http://www.smartcloudfarming.com/" target="_blank">http://www.smartcloudfarming.com/</a><br>     Latitude: 52.5294733<br>     Longitude: 13.4018415     </div>`)[0];
+                popup_607211632147a86e654c4a3153b6ca0e.setContent(html_d8dc90fd44f9db03cc0ed9ce349ad7cc);
+            
+        
+
+        marker_561bc745f9764c1f06883ca29f8986b2.bindPopup(popup_607211632147a86e654c4a3153b6ca0e)
+        ;
+
+        
+    
+    
+            var marker_095b20f157a68989f8c4535be110307c = L.marker(
+                [48.8534951, 2.3483915],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_2b8a2c323c94ef8fee86c11ddded2972 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_095b20f157a68989f8c4535be110307c.setIcon(icon_2b8a2c323c94ef8fee86c11ddded2972);
+        
+    
+        var popup_b9aac1063666c8662902c04c7fb4f2a9 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_5d710d6a8b9737b0cdd137d85e3b8b44 = $(`<div id="html_5d710d6a8b9737b0cdd137d85e3b8b44" style="width: 100.0%; height: 100.0%;">     <b>Meteory</b><br>     <a href="https://meteory.eu" target="_blank">https://meteory.eu</a><br>     Latitude: 48.8534951<br>     Longitude: 2.3483915     </div>`)[0];
+                popup_b9aac1063666c8662902c04c7fb4f2a9.setContent(html_5d710d6a8b9737b0cdd137d85e3b8b44);
+            
+        
+
+        marker_095b20f157a68989f8c4535be110307c.bindPopup(popup_b9aac1063666c8662902c04c7fb4f2a9)
+        ;
+
+        
+    
+    
+            var marker_1c64ca89ce2d5dacc1b227029ed23c58 = L.marker(
+                [48.8534951, 2.3483915],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_b22492f3211034c1dbc577cab66dadc4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_1c64ca89ce2d5dacc1b227029ed23c58.setIcon(icon_b22492f3211034c1dbc577cab66dadc4);
+        
+    
+        var popup_97a20140ade5ed08d8536597a8d952f1 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_1128817b0b89ef81ef48bc6b93b14e18 = $(`<div id="html_1128817b0b89ef81ef48bc6b93b14e18" style="width: 100.0%; height: 100.0%;">     <b>Carbon Maps</b><br>     <a href="https://bit.ly/3Na4cej" target="_blank">https://bit.ly/3Na4cej</a><br>     Latitude: 48.8534951<br>     Longitude: 2.3483915     </div>`)[0];
+                popup_97a20140ade5ed08d8536597a8d952f1.setContent(html_1128817b0b89ef81ef48bc6b93b14e18);
+            
+        
+
+        marker_1c64ca89ce2d5dacc1b227029ed23c58.bindPopup(popup_97a20140ade5ed08d8536597a8d952f1)
+        ;
+
+        
+    
+    
+            var marker_ab0ce5bdf91a31efb45d9f1e5f80c81c = L.marker(
+                [41.92900217310531, 12.489390280010964],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_23ae4367c222cfd8a2f431c37d76ae0a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ab0ce5bdf91a31efb45d9f1e5f80c81c.setIcon(icon_23ae4367c222cfd8a2f431c37d76ae0a);
+        
+    
+        var popup_34649459bdd7d4654300f57b0fc8915f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_0f4a0f21164d9bd7710795fa2d6b8be3 = $(`<div id="html_0f4a0f21164d9bd7710795fa2d6b8be3" style="width: 100.0%; height: 100.0%;">     <b>zeroCO2</b><br>     <a href="http://www.zeroco2.eco" target="_blank">http://www.zeroco2.eco</a><br>     Latitude: 41.92900217310531<br>     Longitude: 12.489390280010964     </div>`)[0];
+                popup_34649459bdd7d4654300f57b0fc8915f.setContent(html_0f4a0f21164d9bd7710795fa2d6b8be3);
+            
+        
+
+        marker_ab0ce5bdf91a31efb45d9f1e5f80c81c.bindPopup(popup_34649459bdd7d4654300f57b0fc8915f)
+        ;
+
+        
+    
+    
+            var marker_678315883736a5a86642f1151b86c0ff = L.marker(
+                [-37.9977225, -57.5482703],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_c687ce69fa2aff6cec42d40dcbce0dd9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_678315883736a5a86642f1151b86c0ff.setIcon(icon_c687ce69fa2aff6cec42d40dcbce0dd9);
+        
+    
+        var popup_940e882195eee753afe7c01b5facc014 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_b3cc584e9f8749e5b62437a5b2210e0c = $(`<div id="html_b3cc584e9f8749e5b62437a5b2210e0c" style="width: 100.0%; height: 100.0%;">     <b>Plataforma PUMA</b><br>     <a href="https://www.plataformapuma.com/" target="_blank">https://www.plataformapuma.com/</a><br>     Latitude: -37.9977225<br>     Longitude: -57.5482703     </div>`)[0];
+                popup_940e882195eee753afe7c01b5facc014.setContent(html_b3cc584e9f8749e5b62437a5b2210e0c);
+            
+        
+
+        marker_678315883736a5a86642f1151b86c0ff.bindPopup(popup_940e882195eee753afe7c01b5facc014)
+        ;
+
+        
+    
+    
+            var marker_77658cb2fa44ba8ae78126460acade6b = L.marker(
+                [48.8534951, 2.3483915],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_5c31d81b2b0296c3906488f5e19e9ad0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_77658cb2fa44ba8ae78126460acade6b.setIcon(icon_5c31d81b2b0296c3906488f5e19e9ad0);
+        
+    
+        var popup_0c64d9d4d0ff5d26bc568368cdf3874a = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_671f2489a598e9b53fe89b8324b3ddbd = $(`<div id="html_671f2489a598e9b53fe89b8324b3ddbd" style="width: 100.0%; height: 100.0%;">     <b>CarbonFarm</b><br>     <a href="https://www.carbonfarm.tech/" target="_blank">https://www.carbonfarm.tech/</a><br>     Latitude: 48.8534951<br>     Longitude: 2.3483915     </div>`)[0];
+                popup_0c64d9d4d0ff5d26bc568368cdf3874a.setContent(html_671f2489a598e9b53fe89b8324b3ddbd);
+            
+        
+
+        marker_77658cb2fa44ba8ae78126460acade6b.bindPopup(popup_0c64d9d4d0ff5d26bc568368cdf3874a)
+        ;
+
+        
+    
+    
+            var marker_c3e912e4a81b1edd864fcf26d6b1a05d = L.marker(
+                [55.671501, 12.583386],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_38f6b018bd6b05bb0103675fd9af3e06 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c3e912e4a81b1edd864fcf26d6b1a05d.setIcon(icon_38f6b018bd6b05bb0103675fd9af3e06);
+        
+    
+        var popup_642efb8c56fce191897641441304ddab = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_2efe7a96bff0e2c647187d003168769a = $(`<div id="html_2efe7a96bff0e2c647187d003168769a" style="width: 100.0%; height: 100.0%;">     <b>Agreena</b><br>     <a href="http://www.agreena.com" target="_blank">http://www.agreena.com</a><br>     Latitude: 55.671501<br>     Longitude: 12.583386     </div>`)[0];
+                popup_642efb8c56fce191897641441304ddab.setContent(html_2efe7a96bff0e2c647187d003168769a);
+            
+        
+
+        marker_c3e912e4a81b1edd864fcf26d6b1a05d.bindPopup(popup_642efb8c56fce191897641441304ddab)
+        ;
+
+        
+    
+    
+            var marker_077086273ffdc37fb9be55e06b05f450 = L.marker(
+                [51.5148505, -0.1256788],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_b124637f9904e182aec6520f773d8f8c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_077086273ffdc37fb9be55e06b05f450.setIcon(icon_b124637f9904e182aec6520f773d8f8c);
+        
+    
+        var popup_4d543b4ce2cabb67aa9d2a1742de1797 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_9f9ccdfe2c94d773ecacfc1e943ceeef = $(`<div id="html_9f9ccdfe2c94d773ecacfc1e943ceeef" style="width: 100.0%; height: 100.0%;">     <b>HappyFarm</b><br>     <a href="http://www.happyfarm.eco" target="_blank">http://www.happyfarm.eco</a><br>     Latitude: 51.5148505<br>     Longitude: -0.1256788     </div>`)[0];
+                popup_4d543b4ce2cabb67aa9d2a1742de1797.setContent(html_9f9ccdfe2c94d773ecacfc1e943ceeef);
+            
+        
+
+        marker_077086273ffdc37fb9be55e06b05f450.bindPopup(popup_4d543b4ce2cabb67aa9d2a1742de1797)
+        ;
+
+        
+    
+    
+            var marker_2449f846daf9006b35a9522d9a23a778 = L.marker(
+                [38.5490679, -7.912225192029876],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_ae5b61c5884560be0fe34ba29dbf321c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2449f846daf9006b35a9522d9a23a778.setIcon(icon_ae5b61c5884560be0fe34ba29dbf321c);
+        
+    
+        var popup_c50467728c8bbc234f1a91f330120283 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_01ae617715bb413bfd3e4f89bd568316 = $(`<div id="html_01ae617715bb413bfd3e4f89bd568316" style="width: 100.0%; height: 100.0%;">     <b>AGROINSIDER</b><br>     <a href="http://www.agroinsider.com" target="_blank">http://www.agroinsider.com</a><br>     Latitude: 38.5490679<br>     Longitude: -7.912225192029876     </div>`)[0];
+                popup_c50467728c8bbc234f1a91f330120283.setContent(html_01ae617715bb413bfd3e4f89bd568316);
+            
+        
+
+        marker_2449f846daf9006b35a9522d9a23a778.bindPopup(popup_c50467728c8bbc234f1a91f330120283)
+        ;
+
+        
+    
+    
+            var marker_1fb195dbd7283e02c7761d1eca1b3cb5 = L.marker(
+                [48.8534951, 2.3483915],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_0fd675b2ac4a06feec6c29706528921d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_1fb195dbd7283e02c7761d1eca1b3cb5.setIcon(icon_0fd675b2ac4a06feec6c29706528921d);
+        
+    
+        var popup_40b6c3f2eed124ce4b8409c49722b617 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_c439d45e17bb31cdf58f55a575b44c0f = $(`<div id="html_c439d45e17bb31cdf58f55a575b44c0f" style="width: 100.0%; height: 100.0%;">     <b>Rize ag</b><br>     <a href="https://www.rizeag.com/" target="_blank">https://www.rizeag.com/</a><br>     Latitude: 48.8534951<br>     Longitude: 2.3483915     </div>`)[0];
+                popup_40b6c3f2eed124ce4b8409c49722b617.setContent(html_c439d45e17bb31cdf58f55a575b44c0f);
+            
+        
+
+        marker_1fb195dbd7283e02c7761d1eca1b3cb5.bindPopup(popup_40b6c3f2eed124ce4b8409c49722b617)
+        ;
+
+        
+    
+    
+            var marker_938a6010eb8d3d60b6c3c6eae9f2711c = L.marker(
+                [41.41292856723106, 2.153798112108671],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_4bfe1523a5c0406c34a6440e7ff46f1b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_938a6010eb8d3d60b6c3c6eae9f2711c.setIcon(icon_4bfe1523a5c0406c34a6440e7ff46f1b);
+        
+    
+        var popup_c55c1f192fc6349368d0a2e02f911db7 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_e486b9676ab26324e731970d7f7bbbcc = $(`<div id="html_e486b9676ab26324e731970d7f7bbbcc" style="width: 100.0%; height: 100.0%;">     <b>Azolla Projects</b><br>     <a href="https://www.azollaprojects.com/" target="_blank">https://www.azollaprojects.com/</a><br>     Latitude: 41.41292856723106<br>     Longitude: 2.153798112108671     </div>`)[0];
+                popup_c55c1f192fc6349368d0a2e02f911db7.setContent(html_e486b9676ab26324e731970d7f7bbbcc);
+            
+        
+
+        marker_938a6010eb8d3d60b6c3c6eae9f2711c.bindPopup(popup_c55c1f192fc6349368d0a2e02f911db7)
+        ;
+
+        
+    
+    
+            var marker_f5b653145ae4b13fb49a19e12220b0d1 = L.marker(
+                [53.96565785, -1.0743052444639218],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_5d01a275ac6785eeaebe48cd092f5ec1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f5b653145ae4b13fb49a19e12220b0d1.setIcon(icon_5d01a275ac6785eeaebe48cd092f5ec1);
+        
+    
+        var popup_faa00f0c2209148893fd30702215f63f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_c01875d3325ef8f59d3c56ea3c7db829 = $(`<div id="html_c01875d3325ef8f59d3c56ea3c7db829" style="width: 100.0%; height: 100.0%;">     <b>ruumi</b><br>     <a href="https://ruumi.io" target="_blank">https://ruumi.io</a><br>     Latitude: 53.96565785<br>     Longitude: -1.0743052444639218     </div>`)[0];
+                popup_faa00f0c2209148893fd30702215f63f.setContent(html_c01875d3325ef8f59d3c56ea3c7db829);
+            
+        
+
+        marker_f5b653145ae4b13fb49a19e12220b0d1.bindPopup(popup_faa00f0c2209148893fd30702215f63f)
+        ;
+
+        
+    
+    
+            var marker_660f416b1148108aa65e6cd21fa0eda8 = L.marker(
+                [43.55379224595366, 1.4837178598783602],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_a951e8534832bf6339eb5e5774049eb2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_660f416b1148108aa65e6cd21fa0eda8.setIcon(icon_a951e8534832bf6339eb5e5774049eb2);
+        
+    
+        var popup_00197897223303fb2cd1db2127878a57 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_8e0dc36ced6086d69ea4163f25e72472 = $(`<div id="html_8e0dc36ced6086d69ea4163f25e72472" style="width: 100.0%; height: 100.0%;">     <b>Micropep Technologies</b><br>     <a href="https://www.micro-pep.com/" target="_blank">https://www.micro-pep.com/</a><br>     Latitude: 43.55379224595366<br>     Longitude: 1.4837178598783602     </div>`)[0];
+                popup_00197897223303fb2cd1db2127878a57.setContent(html_8e0dc36ced6086d69ea4163f25e72472);
+            
+        
+
+        marker_660f416b1148108aa65e6cd21fa0eda8.bindPopup(popup_00197897223303fb2cd1db2127878a57)
+        ;
+
+        
+    
+    
+            var marker_fb772b7101a87e0ba0787f648179b5e2 = L.marker(
+                [50.7154111, 6.1393823],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_64f015fbfc28856a80240f0accb13396 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fb772b7101a87e0ba0787f648179b5e2.setIcon(icon_64f015fbfc28856a80240f0accb13396);
+        
+    
+        var popup_cdabeb1608f65881c2b089664aaeaa66 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d79cceae60055863f46286e9c54bf8e5 = $(`<div id="html_d79cceae60055863f46286e9c54bf8e5" style="width: 100.0%; height: 100.0%;">     <b>crop.zone</b><br>     <a href="http://www.crop.zone" target="_blank">http://www.crop.zone</a><br>     Latitude: 50.7154111<br>     Longitude: 6.1393823     </div>`)[0];
+                popup_cdabeb1608f65881c2b089664aaeaa66.setContent(html_d79cceae60055863f46286e9c54bf8e5);
+            
+        
+
+        marker_fb772b7101a87e0ba0787f648179b5e2.bindPopup(popup_cdabeb1608f65881c2b089664aaeaa66)
+        ;
+
+        
+    
+    
+            var marker_c1ba749b7bb3f4c5857a2e30d963bb02 = L.marker(
+                [55.861155, -4.2501687],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_86f670b905e1a9f33a7b0c5630ee3654 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c1ba749b7bb3f4c5857a2e30d963bb02.setIcon(icon_86f670b905e1a9f33a7b0c5630ee3654);
+        
+    
+        var popup_3ea7ffdf3bd867a0cb49e61598177584 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_56b7ab5db314783e58c25bcb4055d9d6 = $(`<div id="html_56b7ab5db314783e58c25bcb4055d9d6" style="width: 100.0%; height: 100.0%;">     <b>SOLASTA Bio</b><br>     <a href="https://solastabio.com/" target="_blank">https://solastabio.com/</a><br>     Latitude: 55.861155<br>     Longitude: -4.2501687     </div>`)[0];
+                popup_3ea7ffdf3bd867a0cb49e61598177584.setContent(html_56b7ab5db314783e58c25bcb4055d9d6);
+            
+        
+
+        marker_c1ba749b7bb3f4c5857a2e30d963bb02.bindPopup(popup_3ea7ffdf3bd867a0cb49e61598177584)
+        ;
+
+        
+    
+    
+            var marker_3215fcfdf989e3a50bb330349108f18e = L.marker(
+                [47.45471379844665, 19.098946413452882],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_090262a207ed293251bd3ed679d74235 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3215fcfdf989e3a50bb330349108f18e.setIcon(icon_090262a207ed293251bd3ed679d74235);
+        
+    
+        var popup_2b34248758f52821c0ba3bf5cd72ea1c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_7ac000344c1d0d131719a34c63a5acfd = $(`<div id="html_7ac000344c1d0d131719a34c63a5acfd" style="width: 100.0%; height: 100.0%;">     <b>Agroloop</b><br>     <a href="http://www.agroloop.eu" target="_blank">http://www.agroloop.eu</a><br>     Latitude: 47.45471379844665<br>     Longitude: 19.098946413452882     </div>`)[0];
+                popup_2b34248758f52821c0ba3bf5cd72ea1c.setContent(html_7ac000344c1d0d131719a34c63a5acfd);
+            
+        
+
+        marker_3215fcfdf989e3a50bb330349108f18e.bindPopup(popup_2b34248758f52821c0ba3bf5cd72ea1c)
+        ;
+
+        
+    
+    
+            var marker_26436853a920d56e0a2a988467e8fd3a = L.marker(
+                [59.31253549658232, 18.111131126916188],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_64f7865e42e749a0f90af1e9c681a749 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_26436853a920d56e0a2a988467e8fd3a.setIcon(icon_64f7865e42e749a0f90af1e9c681a749);
+        
+    
+        var popup_d992d6a7ec7a7ecaa7f0f616cbd6ae15 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_f8a6114c19b369f47e06a506ba4cac88 = $(`<div id="html_f8a6114c19b369f47e06a506ba4cac88" style="width: 100.0%; height: 100.0%;">     <b>Molecular Attraction AB</b><br>     <a href="http://molecular-attraction.com" target="_blank">http://molecular-attraction.com</a><br>     Latitude: 59.31253549658232<br>     Longitude: 18.111131126916188     </div>`)[0];
+                popup_d992d6a7ec7a7ecaa7f0f616cbd6ae15.setContent(html_f8a6114c19b369f47e06a506ba4cac88);
+            
+        
+
+        marker_26436853a920d56e0a2a988467e8fd3a.bindPopup(popup_d992d6a7ec7a7ecaa7f0f616cbd6ae15)
+        ;
+
+        
+    
+    
+            var marker_294e66e75b4a3197aed286c5facd1ad1 = L.marker(
+                [51.7520131, -1.2578499],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_5bd6f2f71a517e3cb951271e9378cd3e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_294e66e75b4a3197aed286c5facd1ad1.setIcon(icon_5bd6f2f71a517e3cb951271e9378cd3e);
+        
+    
+        var popup_f8fa4ac073fe43ae19ca77c3fbf1b9a4 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_047cff16e92d6206ec0c22e2ddba38db = $(`<div id="html_047cff16e92d6206ec0c22e2ddba38db" style="width: 100.0%; height: 100.0%;">     <b>Oxitec</b><br>     <a href="http://www.oxitec.com" target="_blank">http://www.oxitec.com</a><br>     Latitude: 51.7520131<br>     Longitude: -1.2578499     </div>`)[0];
+                popup_f8fa4ac073fe43ae19ca77c3fbf1b9a4.setContent(html_047cff16e92d6206ec0c22e2ddba38db);
+            
+        
+
+        marker_294e66e75b4a3197aed286c5facd1ad1.bindPopup(popup_f8fa4ac073fe43ae19ca77c3fbf1b9a4)
+        ;
+
+        
+    
+    
+            var marker_4c1011d97dfc9e33b80a4f8573deb3db = L.marker(
+                [52.15657755, -1.520663515711158],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_7bd859e985b4815061a9ad86953816be = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4c1011d97dfc9e33b80a4f8573deb3db.setIcon(icon_7bd859e985b4815061a9ad86953816be);
+        
+    
+        var popup_2623045209f2cd5d47d2c66805d53e6b = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d18cea873736667dd0ddcaf2df842c7c = $(`<div id="html_d18cea873736667dd0ddcaf2df842c7c" style="width: 100.0%; height: 100.0%;">     <b>RootWave</b><br>     <a href="http://www.rootwave.com" target="_blank">http://www.rootwave.com</a><br>     Latitude: 52.15657755<br>     Longitude: -1.520663515711158     </div>`)[0];
+                popup_2623045209f2cd5d47d2c66805d53e6b.setContent(html_d18cea873736667dd0ddcaf2df842c7c);
+            
+        
+
+        marker_4c1011d97dfc9e33b80a4f8573deb3db.bindPopup(popup_2623045209f2cd5d47d2c66805d53e6b)
+        ;
+
+        
+    
+    
+            var marker_fd579e60b85e43f70530ccb60c0d9c8e = L.marker(
+                [48.8420527, 2.2201014],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_40c501e43ab0ddcaa4463e73516cb695 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fd579e60b85e43f70530ccb60c0d9c8e.setIcon(icon_40c501e43ab0ddcaa4463e73516cb695);
+        
+    
+        var popup_9ed0978eb7e50b36431ac9e33fdbf973 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_2ff113925c3c97e5c9c4f4f5db4567d1 = $(`<div id="html_2ff113925c3c97e5c9c4f4f5db4567d1" style="width: 100.0%; height: 100.0%;">     <b>M2I Life Sciences</b><br>     <a href="http://www.m2i-group.fr" target="_blank">http://www.m2i-group.fr</a><br>     Latitude: 48.8420527<br>     Longitude: 2.2201014     </div>`)[0];
+                popup_9ed0978eb7e50b36431ac9e33fdbf973.setContent(html_2ff113925c3c97e5c9c4f4f5db4567d1);
+            
+        
+
+        marker_fd579e60b85e43f70530ccb60c0d9c8e.bindPopup(popup_9ed0978eb7e50b36431ac9e33fdbf973)
+        ;
+
+        
+    
+    
+            var marker_222280ee0e2307a073c5627210f2911c = L.marker(
+                [48.1152271, -1.7155533003323484],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_3f777a5d00d5ac0dbcc50c2677879131 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_222280ee0e2307a073c5627210f2911c.setIcon(icon_3f777a5d00d5ac0dbcc50c2677879131);
+        
+    
+        var popup_e4e14a2935508ad69f41acb480dd1fe1 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_534241249b577ca8c512d7aa0d46a31f = $(`<div id="html_534241249b577ca8c512d7aa0d46a31f" style="width: 100.0%; height: 100.0%;">     <b>Agriodor </b><br>     <a href="nan" target="_blank">nan</a><br>     Latitude: 48.1152271<br>     Longitude: -1.7155533003323484     </div>`)[0];
+                popup_e4e14a2935508ad69f41acb480dd1fe1.setContent(html_534241249b577ca8c512d7aa0d46a31f);
+            
+        
+
+        marker_222280ee0e2307a073c5627210f2911c.bindPopup(popup_e4e14a2935508ad69f41acb480dd1fe1)
+        ;
+
+        
+    
+    
+            var marker_c9a727116b21aebfc941d02c3b6c1953 = L.marker(
+                [41.3501598, -72.0761998],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_faa45307033059bc27002516563591d6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c9a727116b21aebfc941d02c3b6c1953.setIcon(icon_faa45307033059bc27002516563591d6);
+        
+    
+        var popup_371c2263d9f03517fedb076d48755bbb = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_7e61451152f8624ef72cebe645829860 = $(`<div id="html_7e61451152f8624ef72cebe645829860" style="width: 100.0%; height: 100.0%;">     <b>Talam Biotech</b><br>     <a href="www.talam.com" target="_blank">www.talam.com</a><br>     Latitude: 41.3501598<br>     Longitude: -72.0761998     </div>`)[0];
+                popup_371c2263d9f03517fedb076d48755bbb.setContent(html_7e61451152f8624ef72cebe645829860);
+            
+        
+
+        marker_c9a727116b21aebfc941d02c3b6c1953.bindPopup(popup_371c2263d9f03517fedb076d48755bbb)
+        ;
+
+        
+    
+    
+            var marker_c2b499026f0a17ad5ea1748dcc80c4be = L.marker(
+                [48.10773965, 11.460444996144481],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_f2ba43a646483d38e874ca32950f8462 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c2b499026f0a17ad5ea1748dcc80c4be.setIcon(icon_f2ba43a646483d38e874ca32950f8462);
+        
+    
+        var popup_a0125a7af01e4b426a355eb9a53b77a7 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_39171334b64a3e255c5e5453107cac13 = $(`<div id="html_39171334b64a3e255c5e5453107cac13" style="width: 100.0%; height: 100.0%;">     <b>mk2 Biotechnologies</b><br>     <a href="http://www.mk2.bio/" target="_blank">http://www.mk2.bio/</a><br>     Latitude: 48.10773965<br>     Longitude: 11.460444996144481     </div>`)[0];
+                popup_a0125a7af01e4b426a355eb9a53b77a7.setContent(html_39171334b64a3e255c5e5453107cac13);
+            
+        
+
+        marker_c2b499026f0a17ad5ea1748dcc80c4be.bindPopup(popup_a0125a7af01e4b426a355eb9a53b77a7)
+        ;
+
+        
+    
+    
+            var marker_7c0639de54f0d7b4a3383e9d82b58bfd = L.marker(
+                [51.5074456, -0.1277653],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_b0b84541d2f6517891f267ac63357110 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7c0639de54f0d7b4a3383e9d82b58bfd.setIcon(icon_b0b84541d2f6517891f267ac63357110);
+        
+    
+        var popup_88a3de2eaaef8ccfc16eeb975b277178 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_e88c61457810531a568d90408257da20 = $(`<div id="html_e88c61457810531a568d90408257da20" style="width: 100.0%; height: 100.0%;">     <b>Nium</b><br>     <a href="https://wearenium.com/" target="_blank">https://wearenium.com/</a><br>     Latitude: 51.5074456<br>     Longitude: -0.1277653     </div>`)[0];
+                popup_88a3de2eaaef8ccfc16eeb975b277178.setContent(html_e88c61457810531a568d90408257da20);
+            
+        
+
+        marker_7c0639de54f0d7b4a3383e9d82b58bfd.bindPopup(popup_88a3de2eaaef8ccfc16eeb975b277178)
+        ;
+
+        
+    
+    
+            var marker_60866b49dd26690cf3789837d159a1e2 = L.marker(
+                [59.8346593, 10.4409617],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_714d2d72d218e4a2dfeeadd68ede24f8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_60866b49dd26690cf3789837d159a1e2.setIcon(icon_714d2d72d218e4a2dfeeadd68ede24f8);
+        
+    
+        var popup_183c60538796980f80c51d8373d03ae1 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_f99ce706c95fd1576d57450a9aa03066 = $(`<div id="html_f99ce706c95fd1576d57450a9aa03066" style="width: 100.0%; height: 100.0%;">     <b>N2 Applied</b><br>     <a href="https://n2.no/" target="_blank">https://n2.no/</a><br>     Latitude: 59.8346593<br>     Longitude: 10.4409617     </div>`)[0];
+                popup_183c60538796980f80c51d8373d03ae1.setContent(html_f99ce706c95fd1576d57450a9aa03066);
+            
+        
+
+        marker_60866b49dd26690cf3789837d159a1e2.bindPopup(popup_183c60538796980f80c51d8373d03ae1)
+        ;
+
+        
+    
+    
+            var marker_9b7a2a7b66eef361dc3e7d2ae90bebf9 = L.marker(
+                [44.8852626, -0.5444975],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_185072a36e996d03714096cdc0402b66 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9b7a2a7b66eef361dc3e7d2ae90bebf9.setIcon(icon_185072a36e996d03714096cdc0402b66);
+        
+    
+        var popup_8394f6a1c2beb23a9564e7b2b25e1497 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_2afee1c6d918e7cf24e974dc35ed3932 = $(`<div id="html_2afee1c6d918e7cf24e974dc35ed3932" style="width: 100.0%; height: 100.0%;">     <b>Kapsera</b><br>     <a href="http://www.kapsera.com" target="_blank">http://www.kapsera.com</a><br>     Latitude: 44.8852626<br>     Longitude: -0.5444975     </div>`)[0];
+                popup_8394f6a1c2beb23a9564e7b2b25e1497.setContent(html_2afee1c6d918e7cf24e974dc35ed3932);
+            
+        
+
+        marker_9b7a2a7b66eef361dc3e7d2ae90bebf9.bindPopup(popup_8394f6a1c2beb23a9564e7b2b25e1497)
+        ;
+
+        
+    
+    
+            var marker_9a7c53c0b41a815118894a41479e8e05 = L.marker(
+                [48.8748801, 2.3239226],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_c74aaefaf29638869ba6109d55c686f4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9a7c53c0b41a815118894a41479e8e05.setIcon(icon_c74aaefaf29638869ba6109d55c686f4);
+        
+    
+        var popup_3a7c92206202d971015f3bf402d83d1e = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_2def8028cc275969145e52c62541bd97 = $(`<div id="html_2def8028cc275969145e52c62541bd97" style="width: 100.0%; height: 100.0%;">     <b>ALGAIA - JRS Group</b><br>     <a href="http://www.algaia.com" target="_blank">http://www.algaia.com</a><br>     Latitude: 48.8748801<br>     Longitude: 2.3239226     </div>`)[0];
+                popup_3a7c92206202d971015f3bf402d83d1e.setContent(html_2def8028cc275969145e52c62541bd97);
+            
+        
+
+        marker_9a7c53c0b41a815118894a41479e8e05.bindPopup(popup_3a7c92206202d971015f3bf402d83d1e)
+        ;
+
+        
+    
+    
+            var marker_4152c2d18a7139c7b7036f05dfbff66a = L.marker(
+                [40.514827, -3.6562574],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_5cab320255a5b97585346e95ca82d7de = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4152c2d18a7139c7b7036f05dfbff66a.setIcon(icon_5cab320255a5b97585346e95ca82d7de);
+        
+    
+        var popup_421f3e98ed1ef14b65e2f7ed87e7d5bf = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d9556c4ab0f88fe28459e94fbd96a4c5 = $(`<div id="html_d9556c4ab0f88fe28459e94fbd96a4c5" style="width: 100.0%; height: 100.0%;">     <b>AlgaEnergy</b><br>     <a href="http://www.algaenergy.com" target="_blank">http://www.algaenergy.com</a><br>     Latitude: 40.514827<br>     Longitude: -3.6562574     </div>`)[0];
+                popup_421f3e98ed1ef14b65e2f7ed87e7d5bf.setContent(html_d9556c4ab0f88fe28459e94fbd96a4c5);
+            
+        
+
+        marker_4152c2d18a7139c7b7036f05dfbff66a.bindPopup(popup_421f3e98ed1ef14b65e2f7ed87e7d5bf)
+        ;
+
+        
+    
+    
+            var marker_8d21e36126d207f9debb2dd5c72bdc49 = L.marker(
+                [48.8895213, 2.2814744],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_7b4d323ef8ab5340634e88684d47b16d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8d21e36126d207f9debb2dd5c72bdc49.setIcon(icon_7b4d323ef8ab5340634e88684d47b16d);
+        
+    
+        var popup_b6d3acdb0ac02ceae17ade8344b440e3 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_e841bc1cc547e37fa2a97ebf1d681bb8 = $(`<div id="html_e841bc1cc547e37fa2a97ebf1d681bb8" style="width: 100.0%; height: 100.0%;">     <b>Cybele Agrocare</b><br>     <a href="https://cybele-agrocare.com" target="_blank">https://cybele-agrocare.com</a><br>     Latitude: 48.8895213<br>     Longitude: 2.2814744     </div>`)[0];
+                popup_b6d3acdb0ac02ceae17ade8344b440e3.setContent(html_e841bc1cc547e37fa2a97ebf1d681bb8);
+            
+        
+
+        marker_8d21e36126d207f9debb2dd5c72bdc49.bindPopup(popup_b6d3acdb0ac02ceae17ade8344b440e3)
+        ;
+
+        
+    
+    
+            var marker_271b209825348eb1796d975d247b7350 = L.marker(
+                [51.4126669, 5.4506809],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_a2cf98de9f8617079b709739a2e3931c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_271b209825348eb1796d975d247b7350.setIcon(icon_a2cf98de9f8617079b709739a2e3931c);
+        
+    
+        var popup_64cee3ed6b861efca048b443e48c1114 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_65e756c186c2d4d768518d8c8560d94e = $(`<div id="html_65e756c186c2d4d768518d8c8560d94e" style="width: 100.0%; height: 100.0%;">     <b>VitalFluid B.V.</b><br>     <a href="http://www.vitalfluid.com" target="_blank">http://www.vitalfluid.com</a><br>     Latitude: 51.4126669<br>     Longitude: 5.4506809     </div>`)[0];
+                popup_64cee3ed6b861efca048b443e48c1114.setContent(html_65e756c186c2d4d768518d8c8560d94e);
+            
+        
+
+        marker_271b209825348eb1796d975d247b7350.bindPopup(popup_64cee3ed6b861efca048b443e48c1114)
+        ;
+
+        
+    
+    
+            var marker_75ca0d14712d0546aaef28d07cf73fb2 = L.marker(
+                [47.1812587, 8.5235732],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_f0a5e400c8c1c6e522d538d96b69b4e5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_75ca0d14712d0546aaef28d07cf73fb2.setIcon(icon_f0a5e400c8c1c6e522d538d96b69b4e5);
+        
+    
+        var popup_2375b3decc4b42386d7dd2e3b4cc6355 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_432c1ca3fa7a39967f2781cd34c008c5 = $(`<div id="html_432c1ca3fa7a39967f2781cd34c008c5" style="width: 100.0%; height: 100.0%;">     <b>Atlas Agro</b><br>     <a href="https://www.atlasagro.ag" target="_blank">https://www.atlasagro.ag</a><br>     Latitude: 47.1812587<br>     Longitude: 8.5235732     </div>`)[0];
+                popup_2375b3decc4b42386d7dd2e3b4cc6355.setContent(html_432c1ca3fa7a39967f2781cd34c008c5);
+            
+        
+
+        marker_75ca0d14712d0546aaef28d07cf73fb2.bindPopup(popup_2375b3decc4b42386d7dd2e3b4cc6355)
+        ;
+
+        
+    
+    
+            var marker_e17cdc5b9ae0904fe1486472a4669ee0 = L.marker(
+                [51.8838716, 4.2562454],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_63306ba1ad3e86c5ed3b75bd36bd0368 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e17cdc5b9ae0904fe1486472a4669ee0.setIcon(icon_63306ba1ad3e86c5ed3b75bd36bd0368);
+        
+    
+        var popup_6a85bec261fdbdb61d83b54bf3011a6f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_a8467f746e582a64220945aeabd82097 = $(`<div id="html_a8467f746e582a64220945aeabd82097" style="width: 100.0%; height: 100.0%;">     <b>Nature's Principles</b><br>     <a href="http://naturesprinciples.eu/" target="_blank">http://naturesprinciples.eu/</a><br>     Latitude: 51.8838716<br>     Longitude: 4.2562454     </div>`)[0];
+                popup_6a85bec261fdbdb61d83b54bf3011a6f.setContent(html_a8467f746e582a64220945aeabd82097);
+            
+        
+
+        marker_e17cdc5b9ae0904fe1486472a4669ee0.bindPopup(popup_6a85bec261fdbdb61d83b54bf3011a6f)
+        ;
+
+        
+    
+    
+            var marker_d3c5da7cd95bc76810a765bf059dacbc = L.marker(
+                [63.985932563345585, 25.76890733105979],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_7cb5f27b1652952fab779682c16928c1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d3c5da7cd95bc76810a765bf059dacbc.setIcon(icon_7cb5f27b1652952fab779682c16928c1);
+        
+    
+        var popup_302145725d3da83aeefecba97117e2bd = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_b753c3c83672b879262e4b59d8e37b89 = $(`<div id="html_b753c3c83672b879262e4b59d8e37b89" style="width: 100.0%; height: 100.0%;">     <b>Tracegrow</b><br>     <a href="http://www.tracegrow.com/" target="_blank">http://www.tracegrow.com/</a><br>     Latitude: 63.985932563345585<br>     Longitude: 25.76890733105979     </div>`)[0];
+                popup_302145725d3da83aeefecba97117e2bd.setContent(html_b753c3c83672b879262e4b59d8e37b89);
+            
+        
+
+        marker_d3c5da7cd95bc76810a765bf059dacbc.bindPopup(popup_302145725d3da83aeefecba97117e2bd)
+        ;
+
+        
+    
+    
+            var marker_8b4719eace3cf0e41687784d51147d28 = L.marker(
+                [63.4422583, 10.3481956],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_2a4e44a0c49831407bae4efad4140a26 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8b4719eace3cf0e41687784d51147d28.setIcon(icon_2a4e44a0c49831407bae4efad4140a26);
+        
+    
+        var popup_63b44d7b5227c45d08cc027e9ec10151 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_23b34b83760e56186a5c422c2422cbe9 = $(`<div id="html_23b34b83760e56186a5c422c2422cbe9" style="width: 100.0%; height: 100.0%;">     <b>Seaweed Solutions</b><br>     <a href="https://seaweedsolutions.com/" target="_blank">https://seaweedsolutions.com/</a><br>     Latitude: 63.4422583<br>     Longitude: 10.3481956     </div>`)[0];
+                popup_63b44d7b5227c45d08cc027e9ec10151.setContent(html_23b34b83760e56186a5c422c2422cbe9);
+            
+        
+
+        marker_8b4719eace3cf0e41687784d51147d28.bindPopup(popup_63b44d7b5227c45d08cc027e9ec10151)
+        ;
+
+        
+    
+    
+            var marker_78c0d24e2753f1ed5cdc0dfb2f1c5e05 = L.marker(
+                [51.0913834, 3.7129148295797423],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_f6a8ad4bcd7ac763eda3a7b66799e888 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_78c0d24e2753f1ed5cdc0dfb2f1c5e05.setIcon(icon_f6a8ad4bcd7ac763eda3a7b66799e888);
+        
+    
+        var popup_43bc3331dcd0e34e5bc8740c86b6fb2f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_4998fca06bd84cf9965c42bce41ca47e = $(`<div id="html_4998fca06bd84cf9965c42bce41ca47e" style="width: 100.0%; height: 100.0%;">     <b>Zymofix</b><br>     <a href="N-Fix.be" target="_blank">N-Fix.be</a><br>     Latitude: 51.0913834<br>     Longitude: 3.7129148295797423     </div>`)[0];
+                popup_43bc3331dcd0e34e5bc8740c86b6fb2f.setContent(html_4998fca06bd84cf9965c42bce41ca47e);
+            
+        
+
+        marker_78c0d24e2753f1ed5cdc0dfb2f1c5e05.bindPopup(popup_43bc3331dcd0e34e5bc8740c86b6fb2f)
+        ;
+
+        
+    
+    
+            var marker_57d4cb275b202f2b1cff0488ebd57191 = L.marker(
+                [52.1930037, 4.6117161],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_22c3e7c0338f47e88f07814e9a950724 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_57d4cb275b202f2b1cff0488ebd57191.setIcon(icon_22c3e7c0338f47e88f07814e9a950724);
+        
+    
+        var popup_dcae9bb945342aadac39e28b682066ed = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_e3080f61ff123d100bb0f5f5a6f9ed33 = $(`<div id="html_e3080f61ff123d100bb0f5f5a6f9ed33" style="width: 100.0%; height: 100.0%;">     <b>Biota Nutri</b><br>     <a href="http://www.biota.nu" target="_blank">http://www.biota.nu</a><br>     Latitude: 52.1930037<br>     Longitude: 4.6117161     </div>`)[0];
+                popup_dcae9bb945342aadac39e28b682066ed.setContent(html_e3080f61ff123d100bb0f5f5a6f9ed33);
+            
+        
+
+        marker_57d4cb275b202f2b1cff0488ebd57191.bindPopup(popup_dcae9bb945342aadac39e28b682066ed)
+        ;
+
+        
+    
+    
+            var marker_9149090dfd9196b3926b74085a1c4b5a = L.marker(
+                [40.4167047, -3.7035825],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_25190ea68d6a6cf052913b95570f370d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9149090dfd9196b3926b74085a1c4b5a.setIcon(icon_25190ea68d6a6cf052913b95570f370d);
+        
+    
+        var popup_1ed5ee4c03a6771470cb05c280d11756 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_4fd79fb0b961e2d4b2a1f5d937d89eff = $(`<div id="html_4fd79fb0b961e2d4b2a1f5d937d89eff" style="width: 100.0%; height: 100.0%;">     <b>FertigHy</b><br>     <a href="www.fertighy.com" target="_blank">www.fertighy.com</a><br>     Latitude: 40.4167047<br>     Longitude: -3.7035825     </div>`)[0];
+                popup_1ed5ee4c03a6771470cb05c280d11756.setContent(html_4fd79fb0b961e2d4b2a1f5d937d89eff);
+            
+        
+
+        marker_9149090dfd9196b3926b74085a1c4b5a.bindPopup(popup_1ed5ee4c03a6771470cb05c280d11756)
+        ;
+
+        
+    
+    
+            var marker_0a14e7cd23362f1c4ed2f9c2ed82f10d = L.marker(
+                [48.8770043, 2.312003],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_e27320bdc8dba62fde754697c8e983c3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_0a14e7cd23362f1c4ed2f9c2ed82f10d.setIcon(icon_e27320bdc8dba62fde754697c8e983c3);
+        
+    
+        var popup_5f3f66a7b164b5459540858ef2e3e1df = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_de80175339675d1c7f3117e2a3647f65 = $(`<div id="html_de80175339675d1c7f3117e2a3647f65" style="width: 100.0%; height: 100.0%;">     <b>nextProtein </b><br>     <a href="http://www.nextprotein.co" target="_blank">http://www.nextprotein.co</a><br>     Latitude: 48.8770043<br>     Longitude: 2.312003     </div>`)[0];
+                popup_5f3f66a7b164b5459540858ef2e3e1df.setContent(html_de80175339675d1c7f3117e2a3647f65);
+            
+        
+
+        marker_0a14e7cd23362f1c4ed2f9c2ed82f10d.bindPopup(popup_5f3f66a7b164b5459540858ef2e3e1df)
+        ;
+
+        
+    
+    
+            var marker_c31066054a1f922327b6f249d15b56b1 = L.marker(
+                [40.434998, -3.7047127],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_0a857cf4d44c8ed43d13e069e1a20483 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c31066054a1f922327b6f249d15b56b1.setIcon(icon_0a857cf4d44c8ed43d13e069e1a20483);
+        
+    
+        var popup_4f832be87cab66409ca918db6d0ee871 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_757d4f58a59084b0c8fdf93318ce2540 = $(`<div id="html_757d4f58a59084b0c8fdf93318ce2540" style="width: 100.0%; height: 100.0%;">     <b>CHLYDRO</b><br>     <a href="https://www.chlydro.com/" target="_blank">https://www.chlydro.com/</a><br>     Latitude: 40.434998<br>     Longitude: -3.7047127     </div>`)[0];
+                popup_4f832be87cab66409ca918db6d0ee871.setContent(html_757d4f58a59084b0c8fdf93318ce2540);
+            
+        
+
+        marker_c31066054a1f922327b6f249d15b56b1.bindPopup(popup_4f832be87cab66409ca918db6d0ee871)
+        ;
+
+        
+    
+    
+            var marker_174ff5484025b49e703c93d16fdf2869 = L.marker(
+                [51.8096433, -0.3696690219337019],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_432337170ae55a54282fe8a596f930c1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_174ff5484025b49e703c93d16fdf2869.setIcon(icon_432337170ae55a54282fe8a596f930c1);
+        
+    
+        var popup_7fee39c24a09b25f3bffaffc7ed5d065 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_056c3ad52b03511611d153f020c6d87e = $(`<div id="html_056c3ad52b03511611d153f020c6d87e" style="width: 100.0%; height: 100.0%;">     <b>SugaROx</b><br>     <a href="http://www.sugarox.co.uk" target="_blank">http://www.sugarox.co.uk</a><br>     Latitude: 51.8096433<br>     Longitude: -0.3696690219337019     </div>`)[0];
+                popup_7fee39c24a09b25f3bffaffc7ed5d065.setContent(html_056c3ad52b03511611d153f020c6d87e);
+            
+        
+
+        marker_174ff5484025b49e703c93d16fdf2869.bindPopup(popup_7fee39c24a09b25f3bffaffc7ed5d065)
+        ;
+
+        
+    
+    
+            var marker_ff3d52b3f8b2d34e8bb9036e9bf9f250 = L.marker(
+                [55.69883, 12.556294],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_806a83ae1f09755af09540a7c648acc2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ff3d52b3f8b2d34e8bb9036e9bf9f250.setIcon(icon_806a83ae1f09755af09540a7c648acc2);
+        
+    
+        var popup_72bc86d1043fa48249ad39ff2652d174 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_de1ab79e4905b81d29f06e606b1b4cdc = $(`<div id="html_de1ab79e4905b81d29f06e606b1b4cdc" style="width: 100.0%; height: 100.0%;">     <b>Agrobiomics</b><br>     <a href="nan" target="_blank">nan</a><br>     Latitude: 55.69883<br>     Longitude: 12.556294     </div>`)[0];
+                popup_72bc86d1043fa48249ad39ff2652d174.setContent(html_de1ab79e4905b81d29f06e606b1b4cdc);
+            
+        
+
+        marker_ff3d52b3f8b2d34e8bb9036e9bf9f250.bindPopup(popup_72bc86d1043fa48249ad39ff2652d174)
+        ;
+
+        
+    
+    
+            var marker_a38ec5e81a573bc7560e11128253380a = L.marker(
+                [43.93837553530258, 2.1976034908769457],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_8c4ef5c4061e7f6efd118085bd21f231 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a38ec5e81a573bc7560e11128253380a.setIcon(icon_8c4ef5c4061e7f6efd118085bd21f231);
+        
+    
+        var popup_f1b8658c5520803b80caffc9b81c957a = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_a93990702dec50a7d03e9bcae8a21e04 = $(`<div id="html_a93990702dec50a7d03e9bcae8a21e04" style="width: 100.0%; height: 100.0%;">     <b>BOIS VALOR SAS</b><br>     <a href="http://www.boisvalor.fr" target="_blank">http://www.boisvalor.fr</a><br>     Latitude: 43.93837553530258<br>     Longitude: 2.1976034908769457     </div>`)[0];
+                popup_f1b8658c5520803b80caffc9b81c957a.setContent(html_a93990702dec50a7d03e9bcae8a21e04);
+            
+        
+
+        marker_a38ec5e81a573bc7560e11128253380a.bindPopup(popup_f1b8658c5520803b80caffc9b81c957a)
+        ;
+
+        
+    
+    
+            var marker_3604b0756e39660b0345610752ecd97b = L.marker(
+                [50.8173208, 4.265655810386276],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_fd6a20e2cb4edaae05b53e3c79c74699 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3604b0756e39660b0345610752ecd97b.setIcon(icon_fd6a20e2cb4edaae05b53e3c79c74699);
+        
+    
+        var popup_13eff20fe18b6a477097d71ad3187d8d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_5ac2054dbbb609386af8041854cd9382 = $(`<div id="html_5ac2054dbbb609386af8041854cd9382" style="width: 100.0%; height: 100.0%;">     <b>Fyteko </b><br>     <a href="http://www.fyteko.com" target="_blank">http://www.fyteko.com</a><br>     Latitude: 50.8173208<br>     Longitude: 4.265655810386276     </div>`)[0];
+                popup_13eff20fe18b6a477097d71ad3187d8d.setContent(html_5ac2054dbbb609386af8041854cd9382);
+            
+        
+
+        marker_3604b0756e39660b0345610752ecd97b.bindPopup(popup_13eff20fe18b6a477097d71ad3187d8d)
+        ;
+
+        
+    
+    
+            var marker_856710f967136c6c8e747da9ad7246f4 = L.marker(
+                [42.36167838597525, -3.7648740073311924],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_4648adb5de98757efae38395a906f18a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_856710f967136c6c8e747da9ad7246f4.setIcon(icon_4648adb5de98757efae38395a906f18a);
+        
+    
+        var popup_97b06d646b1fab27c23af64119f9be56 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_83a9e69b9ae8605f9c1b95b52d54b070 = $(`<div id="html_83a9e69b9ae8605f9c1b95b52d54b070" style="width: 100.0%; height: 100.0%;">     <b>Ficosterra</b><br>     <a href="http://www.ficosterra.com/" target="_blank">http://www.ficosterra.com/</a><br>     Latitude: 42.36167838597525<br>     Longitude: -3.7648740073311924     </div>`)[0];
+                popup_97b06d646b1fab27c23af64119f9be56.setContent(html_83a9e69b9ae8605f9c1b95b52d54b070);
+            
+        
+
+        marker_856710f967136c6c8e747da9ad7246f4.bindPopup(popup_97b06d646b1fab27c23af64119f9be56)
+        ;
+
+        
+    
+    
+            var marker_e10b50cc515273f1dbf96e53ac437c13 = L.marker(
+                [49.2442747, 1.2317029],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_7f90339178ae55dcea91dac13ce7f0bf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e10b50cc515273f1dbf96e53ac437c13.setIcon(icon_7f90339178ae55dcea91dac13ce7f0bf);
+        
+    
+        var popup_970416252fdec40c4adbef5f9421bc66 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_6d60ebd9b0ec8c0c6b056fcc3deda132 = $(`<div id="html_6d60ebd9b0ec8c0c6b056fcc3deda132" style="width: 100.0%; height: 100.0%;">     <b>Veragrow</b><br>     <a href="https://veragrow.fr/" target="_blank">https://veragrow.fr/</a><br>     Latitude: 49.2442747<br>     Longitude: 1.2317029     </div>`)[0];
+                popup_970416252fdec40c4adbef5f9421bc66.setContent(html_6d60ebd9b0ec8c0c6b056fcc3deda132);
+            
+        
+
+        marker_e10b50cc515273f1dbf96e53ac437c13.bindPopup(popup_970416252fdec40c4adbef5f9421bc66)
+        ;
+
+        
+    
+    
+            var marker_24bcc7fa4d76a9f4e5ae34b24d2e69c2 = L.marker(
+                [51.2181945, 22.554677562145155],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_17c0786327fda98f0ffbc7dfe2ea8ff7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_24bcc7fa4d76a9f4e5ae34b24d2e69c2.setIcon(icon_17c0786327fda98f0ffbc7dfe2ea8ff7);
+        
+    
+        var popup_2907797fb9e089d0a1042a6ff28c067f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_ae7e43bba72369b611be07eee61961c9 = $(`<div id="html_ae7e43bba72369b611be07eee61961c9" style="width: 100.0%; height: 100.0%;">     <b>Microbe+</b><br>     <a href="https://microbe-plus.com" target="_blank">https://microbe-plus.com</a><br>     Latitude: 51.2181945<br>     Longitude: 22.554677562145155     </div>`)[0];
+                popup_2907797fb9e089d0a1042a6ff28c067f.setContent(html_ae7e43bba72369b611be07eee61961c9);
+            
+        
+
+        marker_24bcc7fa4d76a9f4e5ae34b24d2e69c2.bindPopup(popup_2907797fb9e089d0a1042a6ff28c067f)
+        ;
+
+        
+    
+    
+            var marker_19089906e2c1813404e9cd4b0923aca3 = L.marker(
+                [45.67460902440389, 0.430414742525495],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_49144d45227bd089afd98d39d49a5f51 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_19089906e2c1813404e9cd4b0923aca3.setIcon(icon_49144d45227bd089afd98d39d49a5f51);
+        
+    
+        var popup_9c6cc8e068433e2eb57c1c68d70fd807 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_887c5df7be989f0992fa279d63b73675 = $(`<div id="html_887c5df7be989f0992fa279d63b73675" style="width: 100.0%; height: 100.0%;">     <b>ELICIT PLANT</b><br>     <a href="http://www.elicit-plant.com" target="_blank">http://www.elicit-plant.com</a><br>     Latitude: 45.67460902440389<br>     Longitude: 0.430414742525495     </div>`)[0];
+                popup_9c6cc8e068433e2eb57c1c68d70fd807.setContent(html_887c5df7be989f0992fa279d63b73675);
+            
+        
+
+        marker_19089906e2c1813404e9cd4b0923aca3.bindPopup(popup_9c6cc8e068433e2eb57c1c68d70fd807)
+        ;
+
+        
+    
+    
+            var marker_54688aeef396c591c1b44aab642699f1 = L.marker(
+                [46.5320612, 6.592358311589206],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_78c4f55f18f93dd22eef5da1e2c37255 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_54688aeef396c591c1b44aab642699f1.setIcon(icon_78c4f55f18f93dd22eef5da1e2c37255);
+        
+    
+        var popup_5b929c0d75b6ca62a73eddd5ced5b46c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_48113d92bf72760580242a098c9734b4 = $(`<div id="html_48113d92bf72760580242a098c9734b4" style="width: 100.0%; height: 100.0%;">     <b>AgroSustain SA</b><br>     <a href="http://www.agrosustain.ch" target="_blank">http://www.agrosustain.ch</a><br>     Latitude: 46.5320612<br>     Longitude: 6.592358311589206     </div>`)[0];
+                popup_5b929c0d75b6ca62a73eddd5ced5b46c.setContent(html_48113d92bf72760580242a098c9734b4);
+            
+        
+
+        marker_54688aeef396c591c1b44aab642699f1.bindPopup(popup_5b929c0d75b6ca62a73eddd5ced5b46c)
+        ;
+
+        
+    
+    
+            var marker_bdb5c0efd3b226ebc87eb489e70f0743 = L.marker(
+                [51.974269, 5.6479471],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_f1f09cbc41ff7bff8612c3b8c278d8cf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_bdb5c0efd3b226ebc87eb489e70f0743.setIcon(icon_f1f09cbc41ff7bff8612c3b8c278d8cf);
+        
+    
+        var popup_1a3a2f9f8971b32490af4d7ab82b4e6e = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_719aea76b1f5c68766873fb0f3648164 = $(`<div id="html_719aea76b1f5c68766873fb0f3648164" style="width: 100.0%; height: 100.0%;">     <b>Hudson River Biotechnology</b><br>     <a href="http://www.hrb.bio" target="_blank">http://www.hrb.bio</a><br>     Latitude: 51.974269<br>     Longitude: 5.6479471     </div>`)[0];
+                popup_1a3a2f9f8971b32490af4d7ab82b4e6e.setContent(html_719aea76b1f5c68766873fb0f3648164);
+            
+        
+
+        marker_bdb5c0efd3b226ebc87eb489e70f0743.bindPopup(popup_1a3a2f9f8971b32490af4d7ab82b4e6e)
+        ;
+
+        
+    
+    
+            var marker_5bd948397c2230f740bef912b411421c = L.marker(
+                [45.4810971, 9.2010915],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_e232d215861422d1ee9a4846a89662d2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5bd948397c2230f740bef912b411421c.setIcon(icon_e232d215861422d1ee9a4846a89662d2);
+        
+    
+        var popup_0d9dc7f3bb6eeca35ee03ceb9fca298f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d99aa80daf6e69b69e50541b874fb308 = $(`<div id="html_d99aa80daf6e69b69e50541b874fb308" style="width: 100.0%; height: 100.0%;">     <b>Biocentis</b><br>     <a href="https://biocentis.com/" target="_blank">https://biocentis.com/</a><br>     Latitude: 45.4810971<br>     Longitude: 9.2010915     </div>`)[0];
+                popup_0d9dc7f3bb6eeca35ee03ceb9fca298f.setContent(html_d99aa80daf6e69b69e50541b874fb308);
+            
+        
+
+        marker_5bd948397c2230f740bef912b411421c.bindPopup(popup_0d9dc7f3bb6eeca35ee03ceb9fca298f)
+        ;
+
+        
+    
+    
+            var marker_b483678def7692e3853a65f50872bdb5 = L.marker(
+                [51.03299156758029, 3.687112779316363],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_887d206de961357549b50366a6ed0204 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b483678def7692e3853a65f50872bdb5.setIcon(icon_887d206de961357549b50366a6ed0204);
+        
+    
+        var popup_2f437694ea08a5a9faeae9f5fdbddfdb = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_aa1a562751851fce5611782b7e62b2a9 = $(`<div id="html_aa1a562751851fce5611782b7e62b2a9" style="width: 100.0%; height: 100.0%;">     <b>Biotalys</b><br>     <a href="http://www.biotalys.com" target="_blank">http://www.biotalys.com</a><br>     Latitude: 51.03299156758029<br>     Longitude: 3.687112779316363     </div>`)[0];
+                popup_2f437694ea08a5a9faeae9f5fdbddfdb.setContent(html_aa1a562751851fce5611782b7e62b2a9);
+            
+        
+
+        marker_b483678def7692e3853a65f50872bdb5.bindPopup(popup_2f437694ea08a5a9faeae9f5fdbddfdb)
+        ;
+
+        
+    
+    
+            var marker_b31149e0c7c746c6f405b33dec3c3114 = L.marker(
+                [51.4538022, -2.5972985],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_6a950fc2f538458c057fc4d260649959 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b31149e0c7c746c6f405b33dec3c3114.setIcon(icon_6a950fc2f538458c057fc4d260649959);
+        
+    
+        var popup_f717278e39cf558d83f2f537fd374782 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_bf32cf0f324f87a6ca00a32e830c933b = $(`<div id="html_bf32cf0f324f87a6ca00a32e830c933b" style="width: 100.0%; height: 100.0%;">     <b>CDotBio</b><br>     <a href="https://www.cdotbio.co.uk" target="_blank">https://www.cdotbio.co.uk</a><br>     Latitude: 51.4538022<br>     Longitude: -2.5972985     </div>`)[0];
+                popup_f717278e39cf558d83f2f537fd374782.setContent(html_bf32cf0f324f87a6ca00a32e830c933b);
+            
+        
+
+        marker_b31149e0c7c746c6f405b33dec3c3114.bindPopup(popup_f717278e39cf558d83f2f537fd374782)
+        ;
+
+        
+    
+    
+            var marker_6fd09e9d03dc75b48660d32a7ebff1a6 = L.marker(
+                [48.83246425, 2.372559771130674],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_9ff138351c9af81b4e9985e7bef0c022 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6fd09e9d03dc75b48660d32a7ebff1a6.setIcon(icon_9ff138351c9af81b4e9985e7bef0c022);
+        
+    
+        var popup_54d44f2ffc2a8e6c7717327e1cdb8f4c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d74bf7c78416b9d8395f304ba6ce9983 = $(`<div id="html_d74bf7c78416b9d8395f304ba6ce9983" style="width: 100.0%; height: 100.0%;">     <b>Plantik Biosciences</b><br>     <a href="https://plantik.bio/" target="_blank">https://plantik.bio/</a><br>     Latitude: 48.83246425<br>     Longitude: 2.372559771130674     </div>`)[0];
+                popup_54d44f2ffc2a8e6c7717327e1cdb8f4c.setContent(html_d74bf7c78416b9d8395f304ba6ce9983);
+            
+        
+
+        marker_6fd09e9d03dc75b48660d32a7ebff1a6.bindPopup(popup_54d44f2ffc2a8e6c7717327e1cdb8f4c)
+        ;
+
+        
+    
+    
+            var marker_0645e220d817f18fe431dc1564f602fa = L.marker(
+                [51.0088376, 3.7148241533379043],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_2f1313f00147d10e8c63d4e3ce9829a3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_0645e220d817f18fe431dc1564f602fa.setIcon(icon_2f1313f00147d10e8c63d4e3ce9829a3);
+        
+    
+        var popup_2a9090664c5307c4d891e9d416db6f2a = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_fa5ed353b00f5c6d36e3ad0a807da9ab = $(`<div id="html_fa5ed353b00f5c6d36e3ad0a807da9ab" style="width: 100.0%; height: 100.0%;">     <b>Protealis</b><br>     <a href="http://www.protealis.com" target="_blank">http://www.protealis.com</a><br>     Latitude: 51.0088376<br>     Longitude: 3.7148241533379043     </div>`)[0];
+                popup_2a9090664c5307c4d891e9d416db6f2a.setContent(html_fa5ed353b00f5c6d36e3ad0a807da9ab);
+            
+        
+
+        marker_0645e220d817f18fe431dc1564f602fa.bindPopup(popup_2a9090664c5307c4d891e9d416db6f2a)
+        ;
+
+        
+    
+    
+            var marker_af5fb670044343d106c4bde2801855b6 = L.marker(
+                [52.6217619, 1.2190375815664454],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_1303430e0c6fad2493655d7be463cc1a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_af5fb670044343d106c4bde2801855b6.setIcon(icon_1303430e0c6fad2493655d7be463cc1a);
+        
+    
+        var popup_a1f6ed6f652517edc405aa060c47e6b3 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_06fd7543a3698bc150f41a24f73853b8 = $(`<div id="html_06fd7543a3698bc150f41a24f73853b8" style="width: 100.0%; height: 100.0%;">     <b>Tropic</b><br>     <a href="http://www.tropic.bio" target="_blank">http://www.tropic.bio</a><br>     Latitude: 52.6217619<br>     Longitude: 1.2190375815664454     </div>`)[0];
+                popup_a1f6ed6f652517edc405aa060c47e6b3.setContent(html_06fd7543a3698bc150f41a24f73853b8);
+            
+        
+
+        marker_af5fb670044343d106c4bde2801855b6.bindPopup(popup_a1f6ed6f652517edc405aa060c47e6b3)
+        ;
+
+        
+    
+    
+            var marker_9fc11b1b16983951dcb0de4042cf03b1 = L.marker(
+                [-22.725165, -47.6493269],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_c3ee570aa7b9f671a865dc960468a25b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9fc11b1b16983951dcb0de4042cf03b1.setIcon(icon_c3ee570aa7b9f671a865dc960468a25b);
+        
+    
+        var popup_151cf5e06d4ebd64b8cc9c32272ccc5f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_f92e51615d617339ed984f2f87efdd2d = $(`<div id="html_f92e51615d617339ed984f2f87efdd2d" style="width: 100.0%; height: 100.0%;">     <b>InPlanet</b><br>     <a href="https://www.inplanet.earth/" target="_blank">https://www.inplanet.earth/</a><br>     Latitude: -22.725165<br>     Longitude: -47.6493269     </div>`)[0];
+                popup_151cf5e06d4ebd64b8cc9c32272ccc5f.setContent(html_f92e51615d617339ed984f2f87efdd2d);
+            
+        
+
+        marker_9fc11b1b16983951dcb0de4042cf03b1.bindPopup(popup_151cf5e06d4ebd64b8cc9c32272ccc5f)
+        ;
+
+        
+    
+    
+            var marker_880466100dedb1bf1cfec10295f75823 = L.marker(
+                [51.52410675, -0.0876872695009902],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_d815a0fe0f0042c9c84a2e23775a9292 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_880466100dedb1bf1cfec10295f75823.setIcon(icon_d815a0fe0f0042c9c84a2e23775a9292);
+        
+    
+        var popup_7d560af23e08a0d35f5441b0050e768c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_79f878b467637f4c15c9d69e633f2c71 = $(`<div id="html_79f878b467637f4c15c9d69e633f2c71" style="width: 100.0%; height: 100.0%;">     <b>CO2-ZERO</b><br>     <a href="https://co2-zero.tech" target="_blank">https://co2-zero.tech</a><br>     Latitude: 51.52410675<br>     Longitude: -0.0876872695009902     </div>`)[0];
+                popup_7d560af23e08a0d35f5441b0050e768c.setContent(html_79f878b467637f4c15c9d69e633f2c71);
+            
+        
+
+        marker_880466100dedb1bf1cfec10295f75823.bindPopup(popup_7d560af23e08a0d35f5441b0050e768c)
+        ;
+
+        
+    
+    
+            var marker_dccc1bad0d38e716d50f998f8f5139f1 = L.marker(
+                [51.5074456, -0.1277653],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_257fc0ce129436b6e6e0de8800a83d36 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_dccc1bad0d38e716d50f998f8f5139f1.setIcon(icon_257fc0ce129436b6e6e0de8800a83d36);
+        
+    
+        var popup_a39559a0fc6f5c0ca135c1e5e05e3d5b = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_30b76651a9e020a06378cac5d965f4c9 = $(`<div id="html_30b76651a9e020a06378cac5d965f4c9" style="width: 100.0%; height: 100.0%;">     <b>UNDO</b><br>     <a href="https://un-do.com/" target="_blank">https://un-do.com/</a><br>     Latitude: 51.5074456<br>     Longitude: -0.1277653     </div>`)[0];
+                popup_a39559a0fc6f5c0ca135c1e5e05e3d5b.setContent(html_30b76651a9e020a06378cac5d965f4c9);
+            
+        
+
+        marker_dccc1bad0d38e716d50f998f8f5139f1.bindPopup(popup_a39559a0fc6f5c0ca135c1e5e05e3d5b)
+        ;
+
+        
+    
+    
+            var marker_e4a0665db136f8291cc3d3b155ea644f = L.marker(
+                [50.6724142, 21.5361513],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_beb40c6030fed716df626542ec72eb7f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e4a0665db136f8291cc3d3b155ea644f.setIcon(icon_beb40c6030fed716df626542ec72eb7f);
+        
+    
+        var popup_e827b1e64d65bb876bf75b1437a02386 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_68c3a5eb49a54851f90760b3a58ecde6 = $(`<div id="html_68c3a5eb49a54851f90760b3a58ecde6" style="width: 100.0%; height: 100.0%;">     <b>Green Sequest</b><br>     <a href="http://greensequest.earth/" target="_blank">http://greensequest.earth/</a><br>     Latitude: 50.6724142<br>     Longitude: 21.5361513     </div>`)[0];
+                popup_e827b1e64d65bb876bf75b1437a02386.setContent(html_68c3a5eb49a54851f90760b3a58ecde6);
+            
+        
+
+        marker_e4a0665db136f8291cc3d3b155ea644f.bindPopup(popup_e827b1e64d65bb876bf75b1437a02386)
+        ;
+
+        
+    
+    
+            var marker_c5d55c8622a2ae98c46455ffe563b6ba = L.marker(
+                [42.45416150544745, -2.419401281248945],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_1c173c27681b4acba7daf962acd60ae9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c5d55c8622a2ae98c46455ffe563b6ba.setIcon(icon_1c173c27681b4acba7daf962acd60ae9);
+        
+    
+        var popup_ff7921ee16d46c7f99702864c4f69bb5 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_ccb4e36fa8d1e725b44762d351d44707 = $(`<div id="html_ccb4e36fa8d1e725b44762d351d44707" style="width: 100.0%; height: 100.0%;">     <b>FOOD+i - Cluster Alimentario del Valle del Ebro</b><br>     <a href="http://www.clusterfoodmasi.es" target="_blank">http://www.clusterfoodmasi.es</a><br>     Latitude: 42.45416150544745<br>     Longitude: -2.419401281248945     </div>`)[0];
+                popup_ff7921ee16d46c7f99702864c4f69bb5.setContent(html_ccb4e36fa8d1e725b44762d351d44707);
+            
+        
+
+        marker_c5d55c8622a2ae98c46455ffe563b6ba.bindPopup(popup_ff7921ee16d46c7f99702864c4f69bb5)
+        ;
+
+        
+    
+    
+            var marker_472cb5f63d0a1d189f950670da95e164 = L.marker(
+                [35.8617197, 14.5689891],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_f4929d96a4569ff1ea49f7e80554c6ee = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_472cb5f63d0a1d189f950670da95e164.setIcon(icon_f4929d96a4569ff1ea49f7e80554c6ee);
+        
+    
+        var popup_e4c2c84d08ee636c25c38e6e4f373f40 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_55207b9ea1a539b2e0f90feb8a2f2ede = $(`<div id="html_55207b9ea1a539b2e0f90feb8a2f2ede" style="width: 100.0%; height: 100.0%;">     <b>Magfi <Sustainability in Action></b><br>     <a href="http://www.magfi.eu/" target="_blank">http://www.magfi.eu/</a><br>     Latitude: 35.8617197<br>     Longitude: 14.5689891     </div>`)[0];
+                popup_e4c2c84d08ee636c25c38e6e4f373f40.setContent(html_55207b9ea1a539b2e0f90feb8a2f2ede);
+            
+        
+
+        marker_472cb5f63d0a1d189f950670da95e164.bindPopup(popup_e4c2c84d08ee636c25c38e6e4f373f40)
+        ;
+
+        
+    
+    
+            var marker_4f86a3f68bd4e7218bc2f8be2c96c3e7 = L.marker(
+                [46.2093951, 6.1466976],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_329d182b02ad15809bdca5ea80fa27d6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4f86a3f68bd4e7218bc2f8be2c96c3e7.setIcon(icon_329d182b02ad15809bdca5ea80fa27d6);
+        
+    
+        var popup_f7095c301d7cc2fbf8319eef859e632c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_cac7b2f7057bcd43779cd531277e5ac8 = $(`<div id="html_cac7b2f7057bcd43779cd531277e5ac8" style="width: 100.0%; height: 100.0%;">     <b>SGS</b><br>     <a href="http://www.sgs.com" target="_blank">http://www.sgs.com</a><br>     Latitude: 46.2093951<br>     Longitude: 6.1466976     </div>`)[0];
+                popup_f7095c301d7cc2fbf8319eef859e632c.setContent(html_cac7b2f7057bcd43779cd531277e5ac8);
+            
+        
+
+        marker_4f86a3f68bd4e7218bc2f8be2c96c3e7.bindPopup(popup_f7095c301d7cc2fbf8319eef859e632c)
+        ;
+
+        
+    
+    
+            var marker_70d66706399975426fe75ddda04d69e9 = L.marker(
+                [59.241652, 10.256243],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_0e524423d52cd12b0134dd6c0e0c360a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_70d66706399975426fe75ddda04d69e9.setIcon(icon_0e524423d52cd12b0134dd6c0e0c360a);
+        
+    
+        var popup_c6c46126f79ab81e7ed0cdb28e739dea = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_e87b42d9f54ba37598833e3334e5ed2c = $(`<div id="html_e87b42d9f54ba37598833e3334e5ed2c" style="width: 100.0%; height: 100.0%;">     <b>SoilSteam International AS</b><br>     <a href="www.soilsteam.com" target="_blank">www.soilsteam.com</a><br>     Latitude: 59.241652<br>     Longitude: 10.256243     </div>`)[0];
+                popup_c6c46126f79ab81e7ed0cdb28e739dea.setContent(html_e87b42d9f54ba37598833e3334e5ed2c);
+            
+        
+
+        marker_70d66706399975426fe75ddda04d69e9.bindPopup(popup_c6c46126f79ab81e7ed0cdb28e739dea)
+        ;
+
+        
+    
+    
+            var marker_4661e22875bfe5b39763e071408860bc = L.marker(
+                [56.463086, -3.08680204081755],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_fcce79dc00e3695a731ea19f5918d607 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4661e22875bfe5b39763e071408860bc.setIcon(icon_fcce79dc00e3695a731ea19f5918d607);
+        
+    
+        var popup_4d0aa97fc908e6d7371842cdfd7cf30a = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_21e986e089edf1c5064ee78b1f955ab2 = $(`<div id="html_21e986e089edf1c5064ee78b1f955ab2" style="width: 100.0%; height: 100.0%;">     <b>Agricarbon</b><br>     <a href="http://agricarbon.co.uk" target="_blank">http://agricarbon.co.uk</a><br>     Latitude: 56.463086<br>     Longitude: -3.08680204081755     </div>`)[0];
+                popup_4d0aa97fc908e6d7371842cdfd7cf30a.setContent(html_21e986e089edf1c5064ee78b1f955ab2);
+            
+        
+
+        marker_4661e22875bfe5b39763e071408860bc.bindPopup(popup_4d0aa97fc908e6d7371842cdfd7cf30a)
+        ;
+
+        
+    
+    
+            var marker_cbf487a7e7f8168c8d858c3c6329d4df = L.marker(
+                [51.4347809, -3.1789156110790895],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_e76c63822bdca130b5fdfdde75eb48d2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_cbf487a7e7f8168c8d858c3c6329d4df.setIcon(icon_e76c63822bdca130b5fdfdde75eb48d2);
+        
+    
+        var popup_c51570763db038f31e53823d08f8527c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_6e2e481801ae919dfbd9eb13f70850ba = $(`<div id="html_6e2e481801ae919dfbd9eb13f70850ba" style="width: 100.0%; height: 100.0%;">     <b>DOVU</b><br>     <a href="http://dovu.earth" target="_blank">http://dovu.earth</a><br>     Latitude: 51.4347809<br>     Longitude: -3.1789156110790895     </div>`)[0];
+                popup_c51570763db038f31e53823d08f8527c.setContent(html_6e2e481801ae919dfbd9eb13f70850ba);
+            
+        
+
+        marker_cbf487a7e7f8168c8d858c3c6329d4df.bindPopup(popup_c51570763db038f31e53823d08f8527c)
+        ;
+
+        
+    
+    
+            var marker_330287065b1714c5c903ba9c4f33395d = L.marker(
+                [51.01018463786737, 3.7093184870456946],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_cffffe4523be15281a2be67d10112355 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_330287065b1714c5c903ba9c4f33395d.setIcon(icon_cffffe4523be15281a2be67d10112355);
+        
+    
+        var popup_8c70b6e8acc332af88fec410bd12b66d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_90086592544b2fecfa8031a7c7f9f10f = $(`<div id="html_90086592544b2fecfa8031a7c7f9f10f" style="width: 100.0%; height: 100.0%;">     <b>Aphea.Bio</b><br>     <a href="http://www.aphea.bio" target="_blank">http://www.aphea.bio</a><br>     Latitude: 51.01018463786737<br>     Longitude: 3.7093184870456946     </div>`)[0];
+                popup_8c70b6e8acc332af88fec410bd12b66d.setContent(html_90086592544b2fecfa8031a7c7f9f10f);
+            
+        
+
+        marker_330287065b1714c5c903ba9c4f33395d.bindPopup(popup_8c70b6e8acc332af88fec410bd12b66d)
+        ;
+
+        
+    
+    
+            var marker_86455a49ff77e8ce18e0ee6fa1ed95fc = L.marker(
+                [60.22661024584704, 25.015166451298303],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_881df70a7fb1e67c892b22e4ef3612f4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_86455a49ff77e8ce18e0ee6fa1ed95fc.setIcon(icon_881df70a7fb1e67c892b22e4ef3612f4);
+        
+    
+        var popup_66e156cd1307c154488719d0b369be11 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_0909d1c5422228bf2c1fb7b6f91d861b = $(`<div id="html_0909d1c5422228bf2c1fb7b6f91d861b" style="width: 100.0%; height: 100.0%;">     <b>Ductor Corp.</b><br>     <a href="http://www.ductor.com" target="_blank">http://www.ductor.com</a><br>     Latitude: 60.22661024584704<br>     Longitude: 25.015166451298303     </div>`)[0];
+                popup_66e156cd1307c154488719d0b369be11.setContent(html_0909d1c5422228bf2c1fb7b6f91d861b);
+            
+        
+
+        marker_86455a49ff77e8ce18e0ee6fa1ed95fc.bindPopup(popup_66e156cd1307c154488719d0b369be11)
+        ;
+
+        
+    
+    
+            var marker_13320b587c5111161a9e80fab9ff62ad = L.marker(
+                [53.30275505, -2.237884909188896],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_3b982721e833b09c3d626c9dfe2c0a93 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_13320b587c5111161a9e80fab9ff62ad.setIcon(icon_3b982721e833b09c3d626c9dfe2c0a93);
+        
+    
+        var popup_00f2b2736e4e7573630cc780344f8a9d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_a1c0202e94676a8e286ea56fc6821add = $(`<div id="html_a1c0202e94676a8e286ea56fc6821add" style="width: 100.0%; height: 100.0%;">     <b>CroBio</b><br>     <a href="http://www.crobio.ag" target="_blank">http://www.crobio.ag</a><br>     Latitude: 53.30275505<br>     Longitude: -2.237884909188896     </div>`)[0];
+                popup_00f2b2736e4e7573630cc780344f8a9d.setContent(html_a1c0202e94676a8e286ea56fc6821add);
+            
+        
+
+        marker_13320b587c5111161a9e80fab9ff62ad.bindPopup(popup_00f2b2736e4e7573630cc780344f8a9d)
+        ;
+
+        
+    
+    
+            var marker_9bde13b86f370fc419722e76d7232c94 = L.marker(
+                [48.5163158, 9.0631789],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_bd3c319ef2e99387be2879e72b31e0ef = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9bde13b86f370fc419722e76d7232c94.setIcon(icon_bd3c319ef2e99387be2879e72b31e0ef);
+        
+    
+        var popup_c9147c77dc8e343546c75e2b74074dd0 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_a078ba274fb9544d785cf2a943f11d5a = $(`<div id="html_a078ba274fb9544d785cf2a943f11d5a" style="width: 100.0%; height: 100.0%;">     <b>Computomics</b><br>     <a href="https://computomics.com" target="_blank">https://computomics.com</a><br>     Latitude: 48.5163158<br>     Longitude: 9.0631789     </div>`)[0];
+                popup_c9147c77dc8e343546c75e2b74074dd0.setContent(html_a078ba274fb9544d785cf2a943f11d5a);
+            
+        
+
+        marker_9bde13b86f370fc419722e76d7232c94.bindPopup(popup_c9147c77dc8e343546c75e2b74074dd0)
+        ;
+
+        
+    
+    
+            var marker_bd906ae8c6fa7f1dafad1b6f71eac143 = L.marker(
+                [40.79283905029297, 29.51073455810547],
+                {}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+    
+            var icon_302f87c1b2f4949ef875ea0600513026 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_bd906ae8c6fa7f1dafad1b6f71eac143.setIcon(icon_302f87c1b2f4949ef875ea0600513026);
+        
+    
+        var popup_7478d6de11dc748faeaf05bee8cc6272 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_21cf20c23e7d5bf64f8130ebdacafece = $(`<div id="html_21cf20c23e7d5bf64f8130ebdacafece" style="width: 100.0%; height: 100.0%;">     <b>Agriverts</b><br>     <a href="https://agriverts.com/" target="_blank">https://agriverts.com/</a><br>     Latitude: 40.79283905029297<br>     Longitude: 29.51073455810547     </div>`)[0];
+                popup_7478d6de11dc748faeaf05bee8cc6272.setContent(html_21cf20c23e7d5bf64f8130ebdacafece);
+            
+        
+
+        marker_bd906ae8c6fa7f1dafad1b6f71eac143.bindPopup(popup_7478d6de11dc748faeaf05bee8cc6272)
+        ;
+
+        
+    
+    
+            map_83f0ba3c87eca6a4cc2904f4d0516850.fitBounds(
+                [[-37.9977225, -78.8895965], [63.985932563345585, 139.766706]],
+                {}
+            );
+        
+    
+            var layer_control_a8395c2e5cfdd107c1d567c7db2d829f_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_6184e1cef7cabd06ed1e575f17e3903f,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_a8395c2e5cfdd107c1d567c7db2d829f = L.control.layers(
+                layer_control_a8395c2e5cfdd107c1d567c7db2d829f_layers.base_layers,
+                layer_control_a8395c2e5cfdd107c1d567c7db2d829f_layers.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+
+        
+    
+            tile_layer_6184e1cef7cabd06ed1e575f17e3903f.addTo(map_83f0ba3c87eca6a4cc2904f4d0516850);
+        
+</script>
+</html>
